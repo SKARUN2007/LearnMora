@@ -130,3 +130,20 @@ export function calculateValueScore(course: Course) {
   if (course.isFree) score += 10;
   return Math.min(Math.round(score), 100);
 }
+
+export async function getSubjectCounts() {
+  const counts: Record<string, number> = {};
+  COURSES.forEach(course => {
+    counts[course.category] = (counts[course.category] || 0) + 1;
+  });
+  return Object.entries(counts).map(([name, count]) => ({ name, count }));
+}
+
+export async function getProviders() {
+  const providers = new Set(COURSES.map(c => c.provider));
+  return Array.from(providers);
+}
+
+export async function getCoursesByProvider(provider: string) {
+  return COURSES.filter(c => c.provider.toLowerCase() === provider.toLowerCase());
+}

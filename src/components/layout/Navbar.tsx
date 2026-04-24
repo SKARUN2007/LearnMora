@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css";
 import { useUser } from "@/context/UserContext";
 
 export default function Navbar() {
   const { user, signOut } = useUser();
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <nav className={`${styles.navbar} ${isOpen ? styles.navOpen : ""}`}>
@@ -28,24 +30,27 @@ export default function Navbar() {
           </button>
 
           <div className={`${styles.links} ${isOpen ? styles.linksVisible : ""}`}>
-            <div className={styles.hasDropdown}>
-              <span>Subjects</span>
-              <div className={styles.dropdown}>
-                <div className={styles.tier}>
-                  <h4>Technology</h4>
-                  <Link href="/courses/ai" onClick={() => setIsOpen(false)}>AI & ML</Link>
-                  <Link href="/courses/llm" onClick={() => setIsOpen(false)}>LLM Engineering</Link>
-                  <Link href="/courses/cloud" onClick={() => setIsOpen(false)}>Cloud Architecture</Link>
-                </div>
-                <div className={styles.tier}>
-                  <h4>Business</h4>
-                  <Link href="/courses/fintech" onClick={() => setIsOpen(false)}>FinTech</Link>
-                  <Link href="/courses/management" onClick={() => setIsOpen(false)}>Management</Link>
-                </div>
-              </div>
-            </div>
-            <Link href="/universities" onClick={() => setIsOpen(false)}>Universities</Link>
-            <Link href="/roadmap" onClick={() => setIsOpen(false)}>Career Roadmap</Link>
+            <Link 
+              href="/subjects" 
+              onClick={() => setIsOpen(false)}
+              className={pathname.startsWith("/subjects") ? styles.activeLink : ""}
+            >
+              Subjects
+            </Link>
+            <Link 
+              href="/universities" 
+              onClick={() => setIsOpen(false)}
+              className={pathname.startsWith("/universities") ? styles.activeLink : ""}
+            >
+              Universities
+            </Link>
+            <Link 
+              href="/roadmap" 
+              onClick={() => setIsOpen(false)}
+              className={pathname.startsWith("/roadmap") ? styles.activeLink : ""}
+            >
+              Career Roadmap
+            </Link>
           </div>
         </div>
         <div className={styles.right}>

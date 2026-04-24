@@ -57,8 +57,20 @@
   transition: color 0.2s ease;
 }
 
-.links a:hover {
+.links a:hover, .activeLink {
   color: var(--primary);
+  position: relative;
+}
+
+.activeLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent);
+  border-radius: 2px;
 }
 
 .right {
