@@ -1,0 +1,144 @@
+.rankingsPage {
+  background: var(--background);
+  min-height: 100vh;
+  padding-bottom: 5rem;
+}
+
+.hero {
+  padding: 6rem 0;
+  background: var(--surface);
+  text-align: center;
+  border-bottom: 1px solid var(--surface-border);
+  margin-bottom: 4rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.badge {
+  background: var(--accent);
+  color: var(--primary);
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 0.75rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.tableWrapper {
+  background: white;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  box-shadow: var(--shadow-md);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  background: var(--surface);
+  padding: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--surface-border);
+}
+
+.table td {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--surface-border);
+  vertical-align: middle;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover {
+  background: var(--surface);
+}
+
+.rankCol {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.providerCol {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  background: var(--background);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 0.9rem;
+}
+
+.scoreBarWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.scoreBar {
+  height: 8px;
+  background: #d4af37;
+  border-radius: 4px;
+}
+
+.scoreBarWrapper span {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--primary);
+}
+
+.viewBtn {
+  background: var(--primary);
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+.viewBtn:hover {
+  transform: translateY(-2px);
+  background: var(--primary-light);
+}

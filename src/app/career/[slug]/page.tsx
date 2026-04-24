@@ -1,15 +1,16 @@
 import { Metadata } from "next";
 import { getCoursesByCareer } from "@/lib/courses";
 import CourseCard from "@/components/courses/CourseCard";
+import ReviewSystem from "@/components/courses/ReviewSystem";
 import styles from "./career.module.css";
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const careerName = slug.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+  const careerName = slug.split("-").map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   
   return {
     title: `${careerName} Master Roadmap | Learnmora`,
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CareerPathPage({ params }: PageProps) {
   const { slug } = await params;
-  const careerName = slug.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+  const careerName = slug.split("-").map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   const relatedCourses = await getCoursesByCareer(careerName);
 
   // Schema.org Course List Injection
@@ -85,18 +86,44 @@ export default async function CareerPathPage({ params }: PageProps) {
                   <p>While a degree provides a strong foundation, many professional certifications from organizations like Google and Microsoft are now globally recognized as valid credentials for {careerName} roles.</p>
                 </div>
               </div>
+              
+              <div className={styles.reviewsSection} style={{ marginTop: '4rem' }}>
+                <h2>Alumni Success & Verification</h2>
+                <ReviewSystem courseId={slug} />
+              </div>
             </div>
 
             <aside className={styles.sidebar}>
               <div className={styles.salaryCard}>
+                <h3>5-Year Salary Matrix</h3>
+                <div className={styles.chartMock}>
+                  <div className={styles.chartBar} style={{ height: '40%' }}><span>Yr 1</span></div>
+                  <div className={styles.chartBar} style={{ height: '60%' }}><span>Yr 2</span></div>
+                  <div className={styles.chartBar} style={{ height: '75%' }}><span>Yr 3</span></div>
+                  <div className={styles.chartBar} style={{ height: '90%' }}><span>Yr 4</span></div>
+                  <div className={styles.chartBar} style={{ height: '100%', background: 'var(--accent)' }}><span>Yr 5</span></div>
+                </div>
+                <div className={styles.statGroup}>
+                  <div className={styles.stat}>
+                    <span>Entry Trajectory</span>
+                    <strong>$85k - $110k</strong>
+                  </div>
+                  <div className={styles.stat}>
+                    <span>Senior Projection</span>
+                    <strong style={{ color: 'var(--primary)' }}>$165k+</strong>
+                  </div>
+                </div>
+              </div>
+              
+              <div className={styles.salaryCard} style={{ marginTop: '2rem' }}>
                 <h3>Market ROI</h3>
                 <div className={styles.stat}>
                   <span>Avg. Salary Growth</span>
-                  <strong>+25.4%</strong>
+                  <strong style={{ color: '#2ecc71' }}>+25.4%</strong>
                 </div>
                 <div className={styles.stat}>
-                  <span>Market Demand</span>
-                  <strong>High</strong>
+                  <span>Demand Index</span>
+                  <strong>94/100</strong>
                 </div>
               </div>
             </aside>

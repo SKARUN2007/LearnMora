@@ -14,11 +14,27 @@ export default function CourseCard(course: Course) {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <span className={styles.provider}>{provider}</span>
-        {isFree && <span className={styles.freeBadge}>FREE CERT</span>}
+        <div className={styles.providerGroup}>
+          <span className={styles.provider}>{provider}</span>
+          {rating >= 4.8 && <span className={styles.topRatedBadge}>TOP RATED</span>}
+          {isFree && <span className={styles.freeBadge}>FREE CERT</span>}
+        </div>
+        
+        <button 
+          className={`${styles.saveBtn} ${currentStatus === "interested" ? styles.saved : ""}`}
+          onClick={(e) => { 
+            e.preventDefault(); 
+            updateStatus(course.id, currentStatus === "interested" ? "" as any : "interested"); 
+          }}
+          aria-label="Save Course"
+        >
+          {currentStatus === "interested" ? "❤️" : "🤍"}
+        </button>
       </div>
       
       <h3 className={styles.title}>{title}</h3>
+      
+      <div className={styles.liveViews}>🔥 1,200+ professionals viewing</div>
       
       <div className={styles.meta}>
         <div className={styles.metaItem}>

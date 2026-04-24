@@ -1,0 +1,172 @@
+.reviewSystem {
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--surface-border);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.overview {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avg {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.stars {
+  color: #d4af37;
+  font-size: 1.5rem;
+}
+
+.count {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.writeBtn {
+  background: var(--surface);
+  color: var(--primary);
+  border: 1px solid var(--surface-border);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.writeBtn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.form {
+  background: var(--surface);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 3rem;
+}
+
+.ratingSelect {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.star, .starActive {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.star { color: #ccc; }
+.starActive { color: #d4af37; }
+
+.textarea {
+  width: 100%;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surface-border);
+  margin-bottom: 1rem;
+  min-height: 100px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.submitBtn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.reviewCard {
+  background: white;
+  border: 1px solid var(--surface-border);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.userGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  background: var(--surface);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.reviewStars {
+  color: #d4af37;
+  font-size: 1.2rem;
+}
+
+.verifiedBadge {
+  display: inline-block;
+  background: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1rem;
+}
+
+.comment {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
