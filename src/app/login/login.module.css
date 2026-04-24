@@ -1,0 +1,126 @@
+.loginPage {
+  min-height: 100vh;
+  background: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.card {
+  width: 100%;
+  max-width: 450px;
+  background: white;
+  padding: 3.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--surface-border);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inputGroup label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.inputGroup input {
+  padding: 1rem;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  background: var(--surface);
+  transition: border-color 0.2s ease;
+}
+
+.inputGroup input:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.submitBtn {
+  background: var(--primary);
+  color: white;
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  font-weight: 800;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+}
+
+.message {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--success);
+  font-weight: 600;
+}
+
+.footer {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.socialAuth {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.socialAuth span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 800;
+}
+
+.linkedinBtn {
+  background: #0077b5;
+  color: white;
+  width: 100%;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+}

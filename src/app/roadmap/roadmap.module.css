@@ -1,0 +1,51 @@
+.roadmapPage {
+  background: var(--background);
+  min-height: 100vh;
+}
+
+.hero {
+  padding: 5rem 0;
+  background: var(--surface);
+  text-align: center;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  margin: 4rem 0;
+  padding-bottom: 5rem;
+}
+
+.benefit h3 {
+  font-size: 1.25rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.benefit p {
+  color: var(--text-muted);
+  line-height: 1.6;
+}

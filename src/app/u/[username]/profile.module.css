@@ -1,0 +1,137 @@
+.profilePage {
+  background: var(--background);
+  min-height: 100vh;
+  padding-bottom: 5rem;
+}
+
+.profileHeader {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--primary) 0%, #003366 100%);
+  color: white;
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  background: var(--accent);
+  color: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 auto 2rem;
+  border: 4px solid var(--background);
+}
+
+.profileHeader h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  opacity: 0.8;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat strong {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.stat span {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.section {
+  margin-top: 5rem;
+}
+
+.section h2 {
+  font-size: 1.75rem;
+  color: var(--primary);
+  margin-bottom: 2.5rem;
+  font-weight: 800;
+}
+
+.courseGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.badgeGrid {
+  display: flex;
+  gap: 2rem;
+}
+
+.badge {
+  background: white;
+  border: 1px solid var(--surface-border);
+  padding: 1.5rem 2.5rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+.badge span:last-child {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.cta {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.shareBtn {
+  background: #0077b5; /* LinkedIn Color */
+  color: white;
+  padding: 1rem 3rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.shareBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 768px) {
+  .stats {
+    gap: 2rem;
+  }
+}

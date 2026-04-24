@@ -1,0 +1,74 @@
+.analyzer {
+  background: white;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  text-align: center;
+  max-width: 600px;
+  margin: 4rem auto;
+  box-shadow: var(--shadow-lg);
+}
+
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.icon {
+  font-size: 3rem;
+}
+
+.dropzone h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.dropzone p {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.uploadBtn {
+  background: var(--primary);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 1rem;
+  transition: opacity 0.2s ease;
+}
+
+.uploadBtn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.result {
+  animation: fadeIn 0.5s ease;
+}
+
+.result h3 {
+  color: var(--success);
+  margin-bottom: 1.5rem;
+}
+
+.result p {
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.roadmapBtn {
+  background: var(--accent);
+  color: var(--primary);
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

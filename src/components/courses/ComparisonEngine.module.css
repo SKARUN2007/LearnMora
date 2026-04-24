@@ -1,0 +1,162 @@
+.stickyBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--primary);
+  color: white;
+  padding: 1rem 0;
+  z-index: 1500;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease;
+}
+
+.barContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.selectedCount {
+  font-size: 0.9rem;
+}
+
+.selectedCount strong {
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+
+.thumbs {
+  display: flex;
+  gap: 1rem;
+}
+
+.thumb {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  position: relative;
+}
+
+.remove {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--error);
+  color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compareBtn {
+  background: var(--accent);
+  color: var(--primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 800;
+  transition: transform 0.2s ease;
+}
+
+.compareBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.modal {
+  background: white;
+  width: 100%;
+  max-width: 1000px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  animation: zoomIn 0.3s ease;
+}
+
+.modalHeader {
+  background: var(--surface);
+  padding: 2rem;
+  border-bottom: 1px solid var(--surface-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalHeader h2 {
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.comparisonTable {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  padding: 2rem;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--surface-border);
+}
+
+.column:last-child {
+  border-right: none;
+}
+
+.labels {
+  background: var(--surface);
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.cell {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--surface-border);
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+  .barContainer {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}

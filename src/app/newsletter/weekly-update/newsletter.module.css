@@ -1,0 +1,68 @@
+.newsletterPage {
+  background: var(--background);
+  padding-bottom: 5rem;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.header {
+  padding: 6rem 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--surface-border);
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.badge {
+  background: var(--accent);
+  color: var(--primary);
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 0.75rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-bottom: 5rem;
+}
+
+.cta {
+  background: var(--primary);
+  color: white;
+  padding: 4rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.cta h3 { font-size: 1.75rem; margin-bottom: 1rem; }
+.cta p { margin-bottom: 2rem; opacity: 0.8; }
+
+.followBtn {
+  background: var(--accent);
+  color: var(--primary);
+  padding: 1rem 2.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.adSlot { text-align: center; }
+.adLabel { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 1rem; }
+.adPlaceholder { height: 120px; background: var(--surface); border: 1px dashed var(--surface-border); display: flex; align-items: center; justify-content: center; }
