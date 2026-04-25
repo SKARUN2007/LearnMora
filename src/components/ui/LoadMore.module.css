@@ -1,0 +1,23 @@
+.loadMoreWrapper {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.loadMoreBtn {
+  padding: 1rem 2.5rem;
+  background: var(--primary);
+  color: white;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.loadMoreBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  background: var(--primary-light, var(--primary));
+}

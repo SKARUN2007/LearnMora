@@ -1,0 +1,94 @@
+.page {
+  background: var(--background);
+  min-height: 100vh;
+  padding-bottom: 5rem;
+}
+
+.hero {
+  background: var(--surface);
+  padding: 6rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.outlook {
+  max-width: 800px;
+  margin: 1.5rem auto 0;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.container h2 {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.courseGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.emptyState {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  padding: 3rem;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+}
+
+.breadcrumb {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.breadcrumb a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb a:hover {
+  color: var(--primary);
+}
+
+.breadcrumb span {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.badge {
+  background: var(--accent);
+  color: var(--primary);
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 0.75rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}

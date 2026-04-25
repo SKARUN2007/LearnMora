@@ -1,20 +1,15 @@
 .subjectsPage {
   background: var(--background);
+  min-height: 100vh;
   padding-bottom: 5rem;
 }
 
 .hero {
-  padding: 6rem 0;
+  padding: 6rem 2rem;
   background: var(--surface);
-  border-bottom: 1px solid var(--surface-border);
-  margin-bottom: 4rem;
   text-align: center;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  border-bottom: 1px solid var(--surface-border);
+  margin-bottom: 3rem;
 }
 
 .badge {
@@ -33,7 +28,6 @@
   font-weight: 800;
   color: var(--primary);
   margin-bottom: 1rem;
-  letter-spacing: -1px;
 }
 
 .hero p {
@@ -43,56 +37,141 @@
   margin: 0 auto;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem;
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
-.card {
+.megaGridWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.pillarBlock {
   background: white;
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-lg);
-  padding: 2rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pillarBlock:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.pillarHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 2rem;
+  border-bottom: 2px solid var(--accent);
   text-decoration: none;
-  cursor: pointer;
-  position: relative;
+  transition: background 0.2s ease;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 31, 63, 0.08);
-  border-color: var(--accent);
+.pillarHeader:hover {
+  background: var(--surface);
 }
 
-.cardInfo h2 {
-  font-size: 1.25rem;
-  font-weight: 700;
+.pillarHeader h2 {
+  font-size: 2rem;
   color: var(--primary);
   margin-bottom: 0.5rem;
-  transition: color 0.2s;
 }
 
-.card:hover .cardInfo h2 {
-  color: var(--accent);
-}
-
-.count {
-  font-size: 0.9rem;
+.pillarHeader p {
   color: var(--text-muted);
-  font-weight: 500;
+  font-size: 1rem;
 }
 
-.arrow {
-  color: var(--primary);
+.pillarCount {
+  background: var(--primary);
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius-full);
   font-weight: 800;
-  transition: transform 0.2s ease;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.card:hover .arrow {
-  transform: translateX(4px);
+.departmentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0;
+}
+
+.deptCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  border-right: 1px solid var(--surface-border);
+  border-bottom: 1px solid var(--surface-border);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  min-height: 100px;
+}
+
+.deptCard:hover {
+  background: var(--surface);
+}
+
+.deptCard h3 {
+  font-size: 1.1rem;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+.deptMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deptCount {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--background);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--surface-border);
+}
+
+.deptArrow {
+  color: var(--accent);
+  font-weight: bold;
+  font-size: 1.2rem;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.2s ease;
+}
+
+.deptCard:hover .deptArrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .pillarHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .pillarHeader h2 {
+    font-size: 1.5rem;
+  }
+
+  .departmentGrid {
+    grid-template-columns: 1fr;
+  }
 }

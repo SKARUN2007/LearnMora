@@ -41,3 +41,21 @@
   color: var(--text-muted);
   border-radius: var(--radius-lg);
 }
+
+.deptLink {
+  display: inline-block;
+  margin-top: 1.25rem;
+  background: var(--accent);
+  color: var(--primary);
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.deptLink:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}

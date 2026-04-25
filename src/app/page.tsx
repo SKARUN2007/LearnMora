@@ -1,70 +1,16 @@
 import Hero from "@/components/home/Hero";
 import CourseCard from "@/components/courses/CourseCard";
+import { GENERATED_COURSES } from "@/lib/generatedCourses";
+import { TAXONOMY } from "@/lib/taxonomy";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
-  const trendingCourses = [
-    {
-      id: "g-genai-1",
-      title: "Generative AI for Leaders & Architects",
-      provider: "Google Cloud",
-      rating: 4.9,
-      duration: "12 Hours",
-      certificate: true,
-      language: "English",
-      price: "FREE",
-      roi: "22%",
-      isFree: true,
-      category: "Technology",
-      careerPath: ["AI Architect"],
-      description: "Premier GenAI certification."
-    },
-    {
-      id: "mit-fin-1",
-      title: "Financial Engineering and Risk Management",
-      provider: "Columbia University",
-      rating: 4.8,
-      duration: "6 Months",
-      certificate: true,
-      language: "English",
-      price: "$2,400",
-      roi: "35%",
-      isFree: false,
-      category: "Finance",
-      careerPath: ["Risk Manager"],
-      description: "Advanced financial engineering."
-    },
-    {
-      id: "dl-llm-1",
-      title: "Full Stack LLM Engineering with LangChain",
-      provider: "DeepLearning.AI",
-      rating: 4.7,
-      duration: "4 Weeks",
-      certificate: true,
-      language: "English",
-      price: "$49 / mo",
-      roi: "18%",
-      isFree: true,
-      category: "Technology",
-      careerPath: ["LLM Engineer"],
-      description: "Practical LLM engineering."
-    },
-    {
-      id: "mit-energy-1",
-      title: "Sustainable Energy Solutions for 2030",
-      provider: "MIT",
-      rating: 4.9,
-      duration: "8 Weeks",
-      certificate: true,
-      language: "English",
-      price: "FREE",
-      roi: "15%",
-      isFree: true,
-      category: "Green Energy",
-      careerPath: ["Sustainability Consultant"],
-      description: "Zero-cost MIT certificate."
-    }
-  ];
+  // Pick top-rated courses across different pillars for the trending section
+  const trendingCourses = [...GENERATED_COURSES]
+    .sort((a, b) => b.rating - a.rating)
+    .filter((c, i, arr) => arr.findIndex(x => x.subCategory === c.subCategory) === i) // unique subcategories
+    .slice(0, 8);
 
   return (
     <div className={styles.home}>
@@ -87,28 +33,41 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Browse by Pillar - NEW */}
+      <section className={styles.pillarsSection}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Browse by Industry</h2>
+            <p className={styles.sectionSubtitle}>Explore 1,050+ programs across 6 professional pillars.</p>
+          </div>
+          <div className={styles.pillarGrid}>
+            {TAXONOMY.map(pillar => {
+              const count = GENERATED_COURSES.filter(c =>
+                pillar.subCategories.some(s => s.name === c.subCategory)
+              ).length;
+              return (
+                <Link key={pillar.slug} href={`/department/${pillar.slug}`} className={styles.pillarCard}>
+                  <h3>{pillar.name}</h3>
+                  <span className={styles.pillarStat}>{count} programs</span>
+                  <p>{pillar.description}</p>
+                  <span className={styles.pillarArrow}>Explore →</span>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       <section className={styles.trending}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Trending Professional Paths</h2>
-            <p className={styles.sectionSubtitle}>The most sought-after credentials in the current global market.</p>
+            <h2 className={styles.sectionTitle}>Top-Rated Across All Pillars</h2>
+            <p className={styles.sectionSubtitle}>The highest-reviewed credentials from across our global taxonomy.</p>
           </div>
           
           <div className={styles.courseGrid}>
-            {trendingCourses.map((course, idx) => (
-              <CourseCard key={idx} {...course} />
-            ))}
-            
-            {/* In-Grid Native Ad */}
-            <div className={styles.adCard}>
-              <div className={styles.adLabel}>SPONSORED</div>
-              <div className={styles.adPlaceholderGrid}>In-Grid Native Ad Slot</div>
-              <div className={styles.adTitle}>Boost your career with premium mentorship</div>
-              <div className={styles.adButton}>Learn More</div>
-            </div>
-
-            {trendingCourses.map((course, idx) => (
-              <CourseCard key={`dup-${idx}`} {...course} />
+            {trendingCourses.map((course) => (
+              <CourseCard key={course.id} {...course} />
             ))}
           </div>
         </div>
