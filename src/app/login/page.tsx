@@ -28,7 +28,7 @@ function LoginContent() {
     const { error } = await supabase.auth.signInWithOtp({ 
       email,
       options: {
-        emailRedirectTo: typeof window !== 'undefined' ? `${window.location.origin}/dashboard` : 'https://learnmora.com/dashboard',
+        emailRedirectTo: typeof window !== 'undefined' ? `${window.location.origin}/dashboard` : `${process.env.NEXT_PUBLIC_SITE_URL || 'https://learnmora.com'}/dashboard`,
         data: {
           full_name: fullName
         }
@@ -50,7 +50,7 @@ function LoginContent() {
     await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: typeof window !== 'undefined' ? `${window.location.origin}/dashboard` : 'https://learnmora.com/dashboard',
+        redirectTo: typeof window !== 'undefined' ? `${window.location.origin}/dashboard` : `${process.env.NEXT_PUBLIC_SITE_URL || 'https://learnmora.com'}/dashboard`,
       }
     });
   };

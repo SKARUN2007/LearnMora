@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  compress: true,
   images: {
     remotePatterns: [
       {
@@ -9,6 +11,11 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+  },
+  logging: {
+    fetches: {
+      fullUrl: false,
+    },
   },
 };
 

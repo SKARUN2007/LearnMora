@@ -172,8 +172,39 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 450px) {
-  .chatWindow {
-    width: calc(100vw - 4rem);
+@media (max-width: 600px) {
+  .mentor {
+    bottom: 1rem;
+    right: 1rem;
   }
+
+  .trigger {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .chatWindow {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 75dvh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    animation: slideUpMobile 0.3s ease;
+  }
+
+  .inputArea {
+    padding: 0.75rem;
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  .inputArea input {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+}
+
+@keyframes slideUpMobile {
+  from { opacity: 0; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
 }

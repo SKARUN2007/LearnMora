@@ -74,6 +74,7 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  height: 100%;
 }
 
 .loginBtn {
@@ -81,6 +82,9 @@
   font-weight: 500;
   color: var(--primary);
   padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  height: 44px;
   transition: color 0.2s ease, text-decoration 0.2s ease;
 }
 
@@ -106,6 +110,26 @@
 .ctaBtn:hover {
   background: #1e293b;
   transform: translateY(-1px);
+}
+
+.userDashboardMenu {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.trackBadge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  background: rgba(212, 175, 55, 0.1);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  white-space: nowrap;
 }
 
 .hasDropdown {

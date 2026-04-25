@@ -1,18 +1,27 @@
 import { MetadataRoute } from 'next';
 import { TAGGED_COURSES, HIERARCHICAL_TAXONOMY } from '@/lib/dynamicTaxonomy';
+import { TAXONOMY } from '@/lib/taxonomy';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://learnmora.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://learnmora.com';
 
   // 1. Static Pages
   const staticPages = [
     '',
     '/courses',
+    '/courses/subjects',
     '/universities',
+    '/universities/rankings',
     '/roadmap',
     '/glossary',
     '/login',
-    '/dashboard'
+    '/dashboard',
+    '/deals',
+    '/blog',
+    '/about',
+    '/privacy',
+    '/reports/online-learning-2026',
+    '/annual-report',
   ].map(route => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
@@ -36,5 +45,39 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...coursePages, ...subjectPages];
+  // 4. Department / Pillar Taxonomy Pages
+  const departmentPages: MetadataRoute.Sitemap = [];
+  TAXONOMY.forEach(pillar => {
+    departmentPages.push({
+      url: `${baseUrl}/department/${pillar.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    });
+    pillar.subCategories.forEach(sub => {
+      departmentPages.push({
+        url: `${baseUrl}/department/${pillar.slug}/${sub.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.6,
+      });
+    });
+  });
+
+  // 5. University Provider Pages (from taxonomy)
+  const universityProviders = [...new Set(TAGGED_COURSES.map(c => c.provider))];
+  const universityPages = universityProviders.map(provider => ({
+    url: `${baseUrl}/universities/${provider.toLowerCase().replace(/\s+/g, '-')}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }));
+
+  return [
+    ...staticPages,
+    ...coursePages,
+    ...subjectPages,
+    ...departmentPages,
+    ...universityPages,
+  ];
 }
