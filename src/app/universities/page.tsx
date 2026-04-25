@@ -135,12 +135,13 @@ function InstitutionCard({ inst, logoFailed, onLogoError }: { inst: Institution;
         <div className={styles.logoWrapper}>
           {!logoFailed ? (
             <Image
-              src={getLogoUrl(inst.domain)}
+              src={getLogoUrl(inst.domain, inst.slug)}
               alt={`${inst.name} logo`}
               width={56}
               height={56}
               className={styles.logo}
               onError={onLogoError}
+              loading="lazy"
               unoptimized
             />
           ) : (
@@ -154,6 +155,7 @@ function InstitutionCard({ inst, logoFailed, onLogoError }: { inst: Institution;
             <span>📍 {inst.country}</span>
           </div>
           {inst.ranking && <div className={styles.rankBadge}>QS #{inst.ranking}</div>}
+          <div className={styles.browseAction}>Browse →</div>
         </div>
       </Link>
       <button 

@@ -7,10 +7,10 @@
   --primary-light: #003366;
   --accent: #d4af37; /* Gold */
   
-  --surface: #f8f9fa;
+  --surface: #f8fafc;
   --surface-border: #e2e8f0;
   
-  --text-main: #1a1a1a;
+  --text-main: #0f172a;
   --text-muted: #4a5568;
   --text-on-primary: #ffffff;
   
@@ -28,18 +28,9 @@
   --radius-full: 9999px;
 
   --nav-height: 72px;
+  --font-main: var(--font-outfit), sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --foreground: #f8fafc;
-    --surface: #1e293b;
-    --surface-border: #334155;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-  }
-}
 
 * {
   box-sizing: border-box;
@@ -57,7 +48,7 @@ body {
 body {
   color: var(--text-main);
   background: var(--background);
-  font-family: var(--font-geist-sans), Inter, system-ui, sans-serif;
+  font-family: var(--font-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;

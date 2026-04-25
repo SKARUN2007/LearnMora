@@ -1,6 +1,7 @@
-import { GENERATED_COURSES } from "@/lib/generatedCourses";
+import { TAGGED_COURSES } from "@/lib/dynamicTaxonomy";
 import CourseCard from "@/components/courses/CourseCard";
 import LoadMore from "@/components/ui/LoadMore";
+import CrawlAgentSimulation from "@/components/courses/CrawlAgentSimulation";
 import styles from "./subject.module.css";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -19,16 +20,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+function generateCareerBrief(subject: string) {
+  return `In the rapidly evolving 2026 digital economy, expertise in ${subject} has emerged as a critical differentiator. As organizations pivot toward hyper-automation and decentralized infrastructure, professionals equipped with validated credentials in ${subject} are commanding significant salary premiums. This index aggregates the highest-ROI learning paths to ensure absolute career leverage.`;
+}
+
 export default async function SubjectPage({ params }: PageProps) {
   const { subject } = await params;
   const readableName = subject.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 
-  // Try to match against subCategory or niche
-  const subjectCourses = GENERATED_COURSES.filter(c =>
-    (c.subCategory && c.subCategory.toLowerCase().includes(readableName.toLowerCase())) ||
-    (c.niche && c.niche.toLowerCase().includes(readableName.toLowerCase())) ||
-    c.title.toLowerCase().includes(subject.toLowerCase()) ||
-    c.provider.toLowerCase().includes(subject.toLowerCase())
+  // Match against dynamic taxonomy
+  const subjectCourses = TAGGED_COURSES.filter(c =>
+    c.tier1.toLowerCase().includes(readableName.toLowerCase()) ||
+    c.tier2.toLowerCase().includes(readableName.toLowerCase()) ||
+    c.tier3Tags.some(tag => tag.toLowerCase().includes(readableName.toLowerCase())) ||
+    c.title.toLowerCase().includes(readableName.toLowerCase()) ||
+    c.provider.toLowerCase().includes(readableName.toLowerCase())
   );
 
   // Check if there's a matching department for cross-linking
@@ -39,7 +45,7 @@ export default async function SubjectPage({ params }: PageProps) {
       <header className={styles.header}>
         <div className={styles.container}>
           <h1>Best {readableName} Certificates</h1>
-          <p>The 2026 definitive index of professional authority in {readableName}.</p>
+          <p>{generateCareerBrief(readableName)}</p>
           {dept && (
             <Link href={`/department/${dept.pillarSlug}/${dept.slug}`} className={styles.deptLink}>
               View Full {dept.name} Department →
@@ -58,9 +64,7 @@ export default async function SubjectPage({ params }: PageProps) {
             </LoadMore>
           </div>
         ) : (
-          <div className={styles.empty}>
-            <p>Our indexing engine is currently aggregating {readableName} data. Check back in 24 hours.</p>
-          </div>
+          <CrawlAgentSimulation subject={readableName} />
         )}
       </div>
     </div>

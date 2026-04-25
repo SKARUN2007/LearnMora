@@ -29,214 +29,233 @@
   font-size: 1.1rem;
 }
 
-.courseGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem;
-}
-
-/* Ad Card Styling */
-.adCard {
-  background: var(--surface);
-  border: 2px dashed var(--surface-border);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 400px;
-}
-
-.adLabel {
-  font-size: 0.7rem;
-  font-weight: 800;
-  color: var(--text-muted);
-  letter-spacing: 1px;
-  margin-bottom: 1.5rem;
-}
-
-.adPlaceholderGrid {
-  width: 100%;
-  height: 200px;
-  background: #eee;
-  border-radius: var(--radius-md);
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #aaa;
-  font-weight: 600;
-}
-
-.adTitle {
-  font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 1.5rem;
-}
-
-.adButton {
+/* ─── Discovery Hub ─── */
+.discoverySection {
+  padding: 6rem 0;
   background: white;
-  border: 1px solid var(--primary);
-  color: var(--primary);
-  padding: 0.6rem 1.5rem;
-  border-radius: var(--radius-full);
-  font-weight: 700;
-}
-
-.localTrends {
-  background: var(--primary);
-  color: white;
-  padding: 1.5rem 0;
-}
-
-.localFlex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.locationTag {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.95rem;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  background: var(--success);
-  border-radius: 50%;
-  box-shadow: 0 0 0 rgba(16, 185, 129, 0.4);
-  animation: pulse 2s infinite;
-}
-
-.skillBubbles {
-  display: flex;
-  gap: 1rem;
-}
-
-.skillBubbles span {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.4rem 1rem;
-  border-radius: var(--radius-full);
-  font-size: 0.85rem;
-  font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-}
-
-/* Browse by Industry Pillar Grid */
-.pillarsSection {
-  padding: 5rem 0;
-  background: var(--surface);
-  border-top: 1px solid var(--surface-border);
   border-bottom: 1px solid var(--surface-border);
 }
 
-.pillarGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  gap: 1.5rem;
+.discoveryHeader {
+  margin-bottom: 3.5rem;
+  text-align: center;
 }
 
-.pillarCard {
-  background: white;
+.discoveryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.discoveryCol {
+  background: var(--surface);
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-lg);
-  padding: 2rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-
-.pillarCard::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
   transition: transform 0.3s ease;
 }
 
-.pillarCard:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
+.discoveryCol:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
   border-color: var(--accent);
 }
 
-.pillarCard:hover::after {
-  transform: scaleX(1);
-}
-
-.pillarCard h3 {
-  font-size: 1.25rem;
+.colHeader h3 {
+  font-size: 1.4rem;
   font-weight: 800;
   color: var(--primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.pillarStat {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: white;
-  background: var(--primary);
-  padding: 0.25rem 0.75rem;
-  border-radius: var(--radius-full);
-  display: inline-block;
-  width: fit-content;
-  margin-bottom: 1rem;
+.colList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1;
 }
 
-.pillarCard p {
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
   color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  flex-grow: 1;
-  margin-bottom: 1rem;
+  transition: all 0.2s ease;
 }
 
-.pillarArrow {
-  color: var(--accent);
+.listItem:hover {
+  color: var(--primary);
+  transform: translateX(6px);
+}
+
+.itemLogoWrapper {
+  width: 32px;
+  height: 32px;
+  background: white;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.dynamicLogo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  transition: filter 0.3s ease;
+}
+
+.premiumMonogram {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 800;
+  font-size: 0.75rem;
+  color: white;
+  border-radius: var(--radius-sm);
+  transition: filter 0.3s ease;
+}
+
+.listItem:hover .dynamicLogo {
+  filter: grayscale(0%);
+}
+
+.browseBtn {
+  margin-top: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  background: rgba(212, 175, 55, 0.1);
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-full);
+  text-decoration: none;
   font-size: 0.95rem;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.3s ease;
+  align-self: flex-start;
+  transition: all 0.2s ease;
 }
 
-.pillarCard:hover .pillarArrow {
-  opacity: 1;
-  transform: translateX(0);
+.browseBtn span {
+  transition: transform 0.2s ease;
+  color: var(--accent);
 }
 
-@media (max-width: 900px) {
-  .localFlex {
-    flex-direction: column;
-    gap: 1.5rem;
-    text-align: center;
-  }
-  .pillarGrid {
+.browseBtn:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.browseBtn:hover span {
+  transform: translateX(4px);
+  color: white;
+}
+
+/* ─── Rankings Dashboard ─── */
+.rankingsSection {
+  padding: 6rem 0;
+  background: #fdfbf7;
+}
+
+.rankingsHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.blueRibbon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.rankingsHeader h2 {
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  font-weight: 800;
+  color: var(--primary);
+  max-width: 900px;
+  margin: 0 auto;
+  letter-spacing: -1.5px;
+  line-height: 1.2;
+}
+
+.rankingsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.rankingCard {
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  color: white;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.rankingBest {
+  background: linear-gradient(135deg, #c7a022 0%, #a4821a 100%);
+}
+
+.rankingPopular {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+.rankingCardHeader h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: -1px;
+}
+
+.rankingCardHeader p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 2.5rem;
+}
+
+.rankingList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Force CourseCard inside rankings to flow better against deep colors */
+.rankingCard :global(.card) {
+  border: none;
+  background: rgba(255, 255, 255, 0.98);
+}
+
+@media (max-width: 1024px) {
+  .rankingsContainer {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 640px) {
-  .sectionTitle {
-    font-size: 1.75rem;
+  .rankingCard {
+    padding: 1.5rem;
+  }
+  .discoveryCol {
+    padding: 1.5rem;
+  }
+  .discoveryGrid {
+    grid-template-columns: 1fr;
   }
 }

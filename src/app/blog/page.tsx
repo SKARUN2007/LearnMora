@@ -21,7 +21,7 @@ export default function BlogIndex() {
                 <div className={styles.category}>The 2026 Report</div>
                 <h3 className={styles.title}>{title}</h3>
                 <div className={styles.footer}>
-                  <span>Read Report →</span>
+                  <span className={styles.readReportBtn}>Read Report →</span>
                   <span className={styles.verify}>LM VERIFIED</span>
                 </div>
               </Link>

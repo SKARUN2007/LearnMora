@@ -31,11 +31,11 @@ export default function Navbar() {
 
           <div className={`${styles.links} ${isOpen ? styles.linksVisible : ""}`}>
             <Link 
-              href="/subjects" 
+              href="/courses" 
               onClick={() => setIsOpen(false)}
-              className={pathname.startsWith("/subjects") ? styles.activeLink : ""}
+              className={pathname.startsWith("/courses") ? styles.activeLink : ""}
             >
-              Subjects
+              Courses
             </Link>
             <Link 
               href="/universities" 
@@ -61,8 +61,8 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link href="/login" className={styles.loginBtn}>Sign In</Link>
-              <Link href="/login" className={styles.ctaBtn}>Get Access</Link>
+              <Link href="/login" className={styles.loginBtn}>Log In</Link>
+              <Link href="/login" className={styles.ctaBtn}>Sign Up</Link>
             </>
           )}
         </div>

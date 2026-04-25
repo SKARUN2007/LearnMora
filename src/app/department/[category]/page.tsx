@@ -25,10 +25,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function PillarPage({ params }: PageProps) {
   const { category } = await params;
-  const pillar = TAXONOMY.find(p => p.slug === category);
-
+  let pillar = TAXONOMY.find(p => p.slug === category);
+  
   if (!pillar) {
-    notFound();
+    // Shadow Page Fallback Strategy
+    const displayName = decodeURIComponent(category).replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+    pillar = {
+      name: displayName,
+      slug: category,
+      description: `We are currently aggregating millions of data points to generate the full 2026 Learnmora Report on ${displayName}. Our ingestion engine handles deep-linking to shadow paths securely.`,
+      subCategories: []
+    };
   }
 
   // Count courses per sub-category for badges

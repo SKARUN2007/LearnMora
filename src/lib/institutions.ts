@@ -257,8 +257,17 @@ export function getInstitutionBySlug(slug: string): Institution | undefined {
   return ALL_INSTITUTIONS.find(i => i.slug === slug);
 }
 
-export function getLogoUrl(domain: string): string {
-  return `https://logo.clearbit.com/${domain}`;
+export function getLogoUrl(domain: string, slug?: string): string {
+  const localSvgs = [
+    "coursera", "edx", "udemy", "udacity", "pluralsight", "skillshare",
+    "google", "google-cloud", "meta", "nvidia", "apple"
+  ];
+
+  if (slug && localSvgs.includes(slug)) {
+    return `/assets/provider-logos/${slug}.svg`;
+  }
+  
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
 }
 
 export function getInstitutionsByRegion(): Record<string, Institution[]> {

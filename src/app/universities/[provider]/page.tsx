@@ -69,7 +69,7 @@ export default async function ProviderPage({ params }: PageProps) {
             <div className={styles.providerLogoLarge}>
               {inst ? (
                 <Image
-                  src={getLogoUrl(inst.domain)}
+                  src={getLogoUrl(inst.domain, inst.slug)}
                   alt={`${displayName} logo`}
                   width={80}
                   height={80}

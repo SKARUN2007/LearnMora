@@ -1,19 +1,38 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import CourseCard from "@/components/courses/CourseCard";
-import { COURSES, Course } from "@/lib/courses";
+import { TAGGED_COURSES } from "@/lib/dynamicTaxonomy";
+import SmartSidebar from "@/components/courses/SmartSidebar";
 import styles from "./courses.module.css";
 
 export default function CourseDirectory() {
   const [isFreeOnly, setIsFreeOnly] = useState(false);
-  const [filteredCourses, setFilteredCourses] = useState<Course[]>(COURSES);
+  const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set());
+  const [filteredCourses, setFilteredCourses] = useState(TAGGED_COURSES);
   const [search, setSearch] = useState("");
 
+  const toggleTag = useCallback((tag: string) => {
+    setSelectedTags(prev => {
+      const next = new Set(prev);
+      if (next.has(tag)) next.delete(tag);
+      else next.add(tag);
+      return next;
+    });
+  }, []);
+
   useEffect(() => {
-    let result = COURSES;
+    let result = TAGGED_COURSES;
     if (isFreeOnly) {
       result = result.filter(c => c.isFree);
+    }
+    if (selectedTags.size > 0) {
+      result = result.filter(c => {
+        // Match if course matches ANY selected tag (OR logic)
+        return Array.from(selectedTags).some(tag => 
+          c.tier1 === tag || c.tier2 === tag || c.tier3Tags.includes(tag)
+        );
+      });
     }
     if (search) {
       result = result.filter(c => 
@@ -23,40 +42,18 @@ export default function CourseDirectory() {
       );
     }
     setFilteredCourses(result);
-  }, [isFreeOnly, search]);
+  }, [isFreeOnly, selectedTags, search]);
 
   return (
     <div className={styles.coursesPage}>
       <div className={styles.container}>
-        <aside className={styles.sidebar}>
-          <div className={styles.filterGroup}>
-            <h3 className={styles.filterTitle}>The Gold Filter</h3>
-            <label className={styles.toggleLabel}>
-              <input 
-                type="checkbox" 
-                checked={isFreeOnly} 
-                onChange={(e) => setIsFreeOnly(e.target.checked)} 
-              />
-              <span className={styles.toggleSlider}></span>
-              <span className={styles.labelTitle}>100% Free Professional Certificates</span>
-            </label>
-          </div>
-
-          <div className={styles.filterGroup}>
-            <h3 className={styles.filterTitle}>Subjects</h3>
-            <div className={styles.subjectList}>
-              <label><input type="checkbox" defaultChecked /> Technology</label>
-              <label><input type="checkbox" /> Business</label>
-              <label><input type="checkbox" /> Health & Biotech</label>
-              <label><input type="checkbox" /> Humanities</label>
-            </div>
-          </div>
-          
-          <div className={styles.sidebarAd}>
-            <div className={styles.adLabel}>SPONSORED</div>
-            <div className={styles.adPlaceholderSidebar}>Sidebar Sticky Ad</div>
-          </div>
-        </aside>
+        
+        <SmartSidebar 
+          selectedTags={selectedTags} 
+          onTagToggle={toggleTag} 
+          isFreeOnly={isFreeOnly} 
+          setIsFreeOnly={setIsFreeOnly} 
+        />
 
         <main className={styles.mainContent}>
           <div className={styles.header}>
@@ -76,10 +73,15 @@ export default function CourseDirectory() {
           </div>
 
           <div className={styles.grid}>
-            {filteredCourses.map(course => (
+            {filteredCourses.slice(0, 50).map(course => (
               <CourseCard key={course.id} {...course} />
             ))}
           </div>
+          {filteredCourses.length > 50 && (
+            <div className={styles.resultsCount} style={{ textAlign: "center", marginTop: "2rem" }}>
+              Showing top 50 results. Use the sidebar to filter further.
+            </div>
+          )}
         </main>
       </div>
     </div>

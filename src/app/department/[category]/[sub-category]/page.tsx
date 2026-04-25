@@ -28,11 +28,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function DepartmentPage({ params }: PageProps) {
   const { category, "sub-category": subCategorySlug } = await params;
   
-  const pillar = TAXONOMY.find(p => p.slug === category);
-  const dept = getDepartmentBySlug(subCategorySlug);
+  let pillar = TAXONOMY.find(p => p.slug === category);
+  let dept = getDepartmentBySlug(subCategorySlug);
 
   if (!pillar || !dept) {
-    notFound();
+    // Shadow Page Fallback Strategy
+    const pillarName = decodeURIComponent(category).replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+    const deptName = decodeURIComponent(subCategorySlug).replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+
+    pillar = pillar || { name: pillarName, slug: category, description: "", subCategories: [] };
+    dept = dept || { 
+      name: deptName, 
+      slug: subCategorySlug, 
+      outlook: `Learnmora's global crawlers are currently indexing verified certificates and academic metrics for ${deptName}. Our Shadow-Page system guarantees safe routing during the atomic sync process.`,
+      pillar: pillarName,
+      pillarSlug: category
+    };
   }
 
   // Find all courses generated for this subcategory

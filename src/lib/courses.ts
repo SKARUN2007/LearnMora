@@ -105,6 +105,37 @@ export const COURSES: Course[] = [
     category: "Technology",
     careerPath: ["Cloud Solutions Architect"],
     description: "Design and implement solutions that run on Microsoft Azure."
+  },
+  {
+    id: "g-python-1",
+    title: "Crash Course on Python",
+    provider: "Google",
+    rating: 4.8,
+    duration: "6 Weeks",
+    certificate: true,
+    language: "English",
+    price: "FREE",
+    roi: "110%",
+    isFree: true,
+    category: "Technology",
+    careerPath: ["Software Engineer", "Data Analyst"],
+    description: "Learn Python from scratch."
+  },
+  {
+    id: "umich-python-1",
+    title: "Python for Everybody Specialization",
+    provider: "Coursera",
+    university: "University of Michigan",
+    rating: 4.9,
+    duration: "8 Months",
+    certificate: true,
+    language: "English",
+    price: "$39/mo",
+    roi: "140%",
+    isFree: false,
+    category: "Technology",
+    careerPath: ["Python Developer", "Data Scientist"],
+    description: "Learn to program and analyze data with Python."
   }
 ];
 

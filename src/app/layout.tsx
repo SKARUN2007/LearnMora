@@ -1,22 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Script from "next/script";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
 });
 
@@ -40,6 +30,7 @@ import ComparisonEngine from "@/components/courses/ComparisonEngine";
 import FollowModal from "@/components/ui/FollowModal";
 
 import { UserProvider } from "@/context/UserContext";
+import NextTopLoader from "nextjs-toploader";
 
 export default function RootLayout({
   children,
@@ -47,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${inter.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${outfit.variable}`}>
       <head>
         <Script
           async
@@ -70,6 +61,7 @@ export default function RootLayout({
       </head>
       <body>
         <UserProvider>
+          <NextTopLoader color="var(--primary)" showSpinner={false} />
           <Navbar />
           <div className="layout-content">
             <div className="ad-container-top">

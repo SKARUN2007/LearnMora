@@ -3,6 +3,9 @@ import { getCourseById } from "@/lib/courses";
 import CourseCard from "@/components/courses/CourseCard";
 import styles from "./report.module.css";
 import { Metadata } from "next";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import Link from "next/link";
 
 interface PageProps {
   params: { slug: string };
@@ -12,8 +15,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const report = await getReportBySlug(slug);
   return {
-    title: report?.title || "Report | Learnmora",
-    description: report?.excerpt,
+    title: report?.title ? `${report.title} - 2026 Analysis` : "Report Analysis | Learnmora",
+    description: report?.excerpt || "Deep dive analysis of professional courses and certificates for 2026.",
   };
 }
 
@@ -49,10 +52,10 @@ export default async function ReportPage({ params }: PageProps) {
               <h3>Table of Contents</h3>
               <nav>
                 <ul>
-                  <li>Introduction</li>
-                  <li>The Methodology</li>
-                  <li>Top Institutions</li>
-                  <li>ROI Analysis</li>
+                  <li>Executive Summary</li>
+                  <li>LM VERIFIED Checklist</li>
+                  <li>Career Impact</li>
+                  <li>The List</li>
                 </ul>
               </nav>
             </div>
@@ -66,11 +69,21 @@ export default async function ReportPage({ params }: PageProps) {
           <main className={styles.content}>
             <p className={styles.lead}>{report.excerpt}</p>
             <div className={styles.body}>
-              <h2>Why these certificates matter in 2026</h2>
-              <p>As the global job market shifts towards skills-based hiring, institutional authority remains the primary filter for elite recruiters. These free credentials allow you to bypass traditional gatekeepers while maintaining high-prestige status.</p>
-              
-              <h2>The Methodology</h2>
-              <p>Learnmora analyzes real-world LinkedIn credential data and salary growth metrics to rank these programs. Our ROI badge (+% growth) is the primary driver for these selections.</p>
+              <ReactMarkdown 
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  a: ({node, ...props}) => {
+                    // Auto internalize
+                    const href = props.href || "";
+                    if(href.startsWith('/')) {
+                      return <Link href={href} {...props} />
+                    }
+                    return <a target="_blank" rel="noopener noreferrer" {...props} />
+                  }
+                }}
+              >
+                {report.content.replace(/\b(AI|Cloud|Data Science|Engineering)\b/g, '[$1](/courses)')}
+              </ReactMarkdown>
             </div>
 
             <section className={styles.recommended}>

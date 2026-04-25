@@ -1,0 +1,143 @@
+.conversionAction {
+  background: #f8fafc;
+  border: 1px solid var(--surface-border);
+  padding: 3rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.conversionAction h3 {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.conversionAction p {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+}
+
+.btnGroup {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.primaryBtn, .secondaryBtn {
+  padding: 1rem 2rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  border: none;
+}
+
+.primaryBtn {
+  background: var(--primary);
+  color: white;
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  filter: brightness(1.1);
+}
+
+.arrow {
+  transition: transform 0.2s;
+}
+
+.primaryBtn:hover .arrow {
+  transform: translateX(4px) translateY(-4px);
+}
+
+.secondaryBtn {
+  background: var(--surface);
+  color: var(--primary);
+  border: 1px solid var(--surface-border);
+}
+
+.secondaryBtn:hover {
+  border-color: var(--primary);
+  background: rgba(0, 31, 63, 0.05);
+}
+
+.secondaryBtn.trackedState {
+  background: #10b981;
+  color: white;
+  border-color: #10b981;
+  pointer-events: none;
+}
+
+.didEnrollPrompt {
+  background: white;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  animation: slideDown 0.3s ease-out;
+  box-shadow: var(--shadow-sm);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.didEnrollPrompt p {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.quickTrackBtn {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: all 0.2s;
+}
+
+.quickTrackBtn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+.dismissBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dismissBtn:hover {
+  text-decoration: underline;
+  color: var(--primary);
+}
+
+.externalIcon {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+.loadingText {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}

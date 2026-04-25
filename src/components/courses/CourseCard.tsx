@@ -1,17 +1,38 @@
 "use client";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useUser } from "@/context/UserContext";
 import { Course } from "@/lib/courses";
+import RoiModal from "./RoiModal";
 import styles from "./CourseCard.module.css";
 
-export default function CourseCard(course: Course) {
+interface CourseCardProps extends Course {
+  isComparisonView?: boolean;
+}
+
+export default function CourseCard(props: CourseCardProps) {
+  const { isComparisonView = false, ...course } = props;
   const { title, provider, rating, duration, price, roi, isFree } = course;
-  const { library, updateStatus, addToComparison, comparisonList } = useUser();
   
+  const { library, updateStatus, addToComparison, comparisonList } = useUser();
+  const router = useRouter();
+  
+  const [showRoi, setShowRoi] = useState(false);
   const currentStatus = library[course.id];
   const isInComparison = comparisonList.some(c => c.id === course.id);
 
+  const handleRoiClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isComparisonView) {
+      setShowRoi(true);
+    } else {
+      router.push(`/career-impact/${course.id}`);
+    }
+  };
+
   return (
+    <>
     <div className={styles.card}>
       <div className={styles.header}>
         <div className={styles.providerGroup}>
@@ -82,7 +103,12 @@ export default function CourseCard(course: Course) {
         </button>
       )}
       
-      <button className={styles.viewBtn}>View Professional ROI</button>
+      <button className={styles.viewBtn} onClick={handleRoiClick}>
+        View Professional ROI
+      </button>
     </div>
+    
+    {showRoi && <RoiModal course={course} onClose={() => setShowRoi(false)} />}
+    </>
   );
 }

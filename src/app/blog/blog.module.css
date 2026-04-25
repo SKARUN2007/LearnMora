@@ -87,6 +87,21 @@
   font-size: 0.65rem;
 }
 
+.readReportBtn {
+  font-weight: 800;
+  color: var(--accent);
+  background: rgba(212, 175, 55, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  transition: all 0.2s ease;
+}
+
+.card:hover .readReportBtn {
+  background: var(--accent);
+  color: white;
+  transform: translateX(4px);
+}
+
 @media (max-width: 640px) {
   .header h1 {
     font-size: 2.25rem;
