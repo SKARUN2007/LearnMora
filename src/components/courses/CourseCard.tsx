@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@/context/UserContext";
 import { Course } from "@/lib/courses";
 import RoiModal from "./RoiModal";
+import InstitutionLogo from "@/components/ui/InstitutionLogo";
 import styles from "./CourseCard.module.css";
 
 interface CourseCardProps extends Course {
@@ -36,6 +37,12 @@ export default function CourseCard(props: CourseCardProps) {
     <div className={styles.card}>
       <div className={styles.header}>
         <div className={styles.providerGroup}>
+          <InstitutionLogo 
+            src={`/assets/provider-logos/${provider.toLowerCase().replace(/\s+/g, '-')}.svg`} 
+            alt={provider} 
+            fallbackInitials={provider.substring(0, 2).toUpperCase()} 
+            size={24} 
+          />
           <span className={styles.provider}>{provider}</span>
           {rating >= 4.8 && <span className={styles.topRatedBadge}>TOP RATED</span>}
           {isFree && <span className={styles.freeBadge}>FREE CERT</span>}
@@ -69,12 +76,23 @@ export default function CourseCard(props: CourseCardProps) {
       </div>
 
       <div className={styles.actions}>
-        <button 
-          className={`${styles.trackBtn} ${currentStatus ? styles.active : ""}`}
-          onClick={() => updateStatus(course.id, "interested")}
-        >
-          {currentStatus ? currentStatus.toUpperCase() : "TRACK"}
-        </button>
+        {course.enroll_url ? (
+          <a 
+            href={course.enroll_url} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={`${styles.trackBtn} ${styles.active}`}
+          >
+            ENROLL NOW
+          </a>
+        ) : (
+          <button 
+            className={`${styles.trackBtn} ${currentStatus ? styles.active : ""}`}
+            onClick={() => updateStatus(course.id, "interested")}
+          >
+            {currentStatus ? currentStatus.toUpperCase() : "TRACK"}
+          </button>
+        )}
         <button 
           className={`${styles.compareBtn} ${isInComparison ? styles.active : ""}`}
           onClick={() => addToComparison(course)}

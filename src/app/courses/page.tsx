@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { VirtuosoGrid } from "react-virtuoso";
 import CourseCard from "@/components/courses/CourseCard";
 import { TAGGED_COURSES } from "@/lib/dynamicTaxonomy";
 import SmartSidebar from "@/components/courses/SmartSidebar";
@@ -72,16 +73,17 @@ export default function CourseDirectory() {
             Found {filteredCourses.length} professional paths matching your criteria.
           </div>
 
-          <div className={styles.grid}>
-            {filteredCourses.slice(0, 50).map(course => (
-              <CourseCard key={course.id} {...course} />
-            ))}
+          <div style={{ minHeight: '1000px' }}>
+            <VirtuosoGrid
+              useWindowScroll
+              totalCount={filteredCourses.length}
+              listClassName={styles.grid}
+              itemContent={(index) => {
+                const course = filteredCourses[index];
+                return <CourseCard key={course.id} {...course} />;
+              }}
+            />
           </div>
-          {filteredCourses.length > 50 && (
-            <div className={styles.resultsCount} style={{ textAlign: "center", marginTop: "2rem" }}>
-              Showing top 50 results. Use the sidebar to filter further.
-            </div>
-          )}
         </main>
       </div>
     </div>

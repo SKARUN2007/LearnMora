@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import Fuse from 'fuse.js';
-import { GENERATED_COURSES } from '@/lib/generatedCourses';
+import { GENERATED_COURSES } from '@/lib/generated5000Courses';
 import { COURSES } from '@/lib/courses';
 
 // De-duplicate by ID

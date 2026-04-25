@@ -1,5 +1,5 @@
 import { Course } from "./courses";
-import { GENERATED_COURSES } from "./generatedCourses";
+import { GENERATED_COURSES } from "./generated5000Courses";
 import { COURSES } from "./courses";
 import { TAXONOMY, Pillar, SubCategory } from "./taxonomy";
 

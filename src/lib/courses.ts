@@ -13,6 +13,7 @@ export interface Course {
   category: string;
   careerPath: string[];
   description: string;
+  enroll_url?: string;
 }
 
 export const CAREERS = [
