@@ -6,6 +6,7 @@ import { GENERATED_COURSES, ExtendedCourse } from "@/lib/generatedCourses";
 import { getCoursesByProvider } from "@/lib/courses";
 import CourseCard from "@/components/courses/CourseCard";
 import LoadMore from "@/components/ui/LoadMore";
+import CrawlAgentSimulation from "@/components/courses/CrawlAgentSimulation";
 import styles from "../universities.module.css";
 
 interface PageProps {
@@ -36,7 +37,8 @@ export default async function ProviderPage({ params }: PageProps) {
   // Try to find courses from generated data or legacy data
   const generatedCourses = GENERATED_COURSES.filter(c =>
     c.provider.toLowerCase().includes(inst?.name.toLowerCase() || provider.replace(/-/g, " ")) ||
-    c.provider.toLowerCase().includes(provider.replace(/-/g, " "))
+    c.provider.toLowerCase().includes(provider.replace(/-/g, " ")) ||
+    c.university?.toLowerCase().includes(inst?.name.toLowerCase() || provider.replace(/-/g, " "))
   );
   const legacyCourses = await getCoursesByProvider(provider.replace(/-/g, " "));
   const allCourses = [...generatedCourses, ...legacyCourses];
@@ -118,9 +120,7 @@ export default async function ProviderPage({ params }: PageProps) {
             </div>
           </>
         ) : (
-          <div className={styles.empty}>
-            Our indexing engine is currently aggregating courses from {displayName}. Check back soon for the 2026 update.
-          </div>
+          <CrawlAgentSimulation subject={displayName} />
         )}
       </div>
     </div>

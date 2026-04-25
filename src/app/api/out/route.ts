@@ -22,7 +22,7 @@ export async function GET(request: Request) {
   if (providerSlug.includes("coursera")) {
     redirectUrl = deepSlug ? `https://www.coursera.org/learn/${deepSlug}?ref=learnmora` : `https://www.coursera.org/search?query=${courseId}`;
   } else if (providerSlug.includes("harvard") || providerSlug.includes("mit") || providerSlug.includes("edx")) {
-    redirectUrl = deepSlug ? `https://www.edx.org/course/${deepSlug}?ref=learnmora` : `https://www.edx.org/search?q=${courseId}`;
+    redirectUrl = `https://www.edx.org/search?q=${encodeURIComponent(title)}&ref=learnmora`;
   } else if (providerSlug.includes("microsoft") || providerSlug.includes("linkedin")) {
     redirectUrl = deepSlug ? `https://learn.microsoft.com/en-us/training/paths/${deepSlug}?wt.mc_id=studentamb_learnmora` : `https://learn.microsoft.com/en-us/training/`;
   } else if (providerSlug.includes("google")) {

@@ -76,23 +76,14 @@ export default function CourseCard(props: CourseCardProps) {
       </div>
 
       <div className={styles.actions}>
-        {course.enroll_url ? (
-          <a 
-            href={course.enroll_url} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className={`${styles.trackBtn} ${styles.active}`}
-          >
-            ENROLL NOW
-          </a>
-        ) : (
-          <button 
-            className={`${styles.trackBtn} ${currentStatus ? styles.active : ""}`}
-            onClick={() => updateStatus(course.id, "interested")}
-          >
-            {currentStatus ? currentStatus.toUpperCase() : "TRACK"}
-          </button>
-        )}
+        <a 
+          href={`/api/out?course=${course.id}&provider=${encodeURIComponent(course.provider)}&title=${encodeURIComponent(course.title)}&ref=learnmora_elite&aff_id=LM_2026_PRO`}
+          target="_blank" 
+          rel="noopener noreferrer"
+          className={`${styles.trackBtn} ${styles.active}`}
+        >
+          ENROLL NOW
+        </a>
         <button 
           className={`${styles.compareBtn} ${isInComparison ? styles.active : ""}`}
           onClick={() => addToComparison(course)}

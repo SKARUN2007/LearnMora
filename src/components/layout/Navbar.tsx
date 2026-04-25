@@ -51,18 +51,43 @@ export default function Navbar() {
             >
               Career Roadmap
             </Link>
+
+            {/* Mobile-only Auth Links */}
+            <div className={styles.mobileAuth}>
+              {user ? (
+                <>
+                  <button className={styles.loginBtn} onClick={signOut}>Sign Out</button>
+                  <Link href="/u/skarunamuthan" className={styles.ctaBtn} onClick={() => setIsOpen(false)}>Verified Profile</Link>
+                </>
+              ) : (
+                <>
+                  <Link href="/login" className={styles.loginBtn} onClick={() => setIsOpen(false)}>Log In</Link>
+                  <Link href="/login?mode=signup" className={styles.ctaBtn} onClick={() => setIsOpen(false)}>Sign Up</Link>
+                </>
+              )}
+            </div>
           </div>
         </div>
         <div className={styles.right}>
           {user ? (
-            <>
-              <button className={styles.loginBtn} onClick={signOut}>Sign Out</button>
-              <Link href="/u/skarunamuthan" className={styles.ctaBtn}>Verified Profile</Link>
-            </>
+            <div className={styles.userSection}>
+              <div className={styles.userDashboardMenu}>
+                <span className={styles.trackBadge}>{user.user_metadata?.track || "Elite Command"}</span>
+                <div className={styles.profileCircle} title={user.email}>
+                  {user.email?.[0].toUpperCase()}
+                </div>
+              </div>
+              <div className={styles.userDropdown}>
+                <Link href="/dashboard" className={styles.dropdownItem}>Admin Dashboard</Link>
+                <Link href="/u/skarunamuthan" className={styles.dropdownItem}>My Profile</Link>
+                <Link href="/roadmap" className={styles.dropdownItem}>Career Roadmap</Link>
+                <button className={styles.signOutBtn} onClick={signOut}>Sign Out</button>
+              </div>
+            </div>
           ) : (
             <>
               <Link href="/login" className={styles.loginBtn}>Log In</Link>
-              <Link href="/login" className={styles.ctaBtn}>Sign Up</Link>
+              <Link href="/login?mode=signup" className={styles.ctaBtn}>Sign Up</Link>
             </>
           )}
         </div>

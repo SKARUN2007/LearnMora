@@ -29,7 +29,8 @@ export default function CrawlAgentSimulation({ subject }: { subject: string }) {
           roi: "150%",
           isFree: true,
           category: "Emerging Tech",
-          careerPath: [`${subject} Specialist`]
+          careerPath: [`${subject} Specialist`],
+          description: `Comprehensive introduction to ${subject}.`
         },
         {
           id: `mock-2-${Date.now()}`,
@@ -43,7 +44,8 @@ export default function CrawlAgentSimulation({ subject }: { subject: string }) {
           roi: "185%",
           isFree: true,
           category: "Emerging Tech",
-          careerPath: [`${subject} Architect`]
+          careerPath: [`${subject} Architect`],
+          description: `Deep dive into the architecture of ${subject}.`
         },
         {
           id: `mock-3-${Date.now()}`,
@@ -57,7 +59,8 @@ export default function CrawlAgentSimulation({ subject }: { subject: string }) {
           roi: "130%",
           isFree: true,
           category: "Emerging Tech",
-          careerPath: [`${subject} Manager`]
+          careerPath: [`${subject} Manager`],
+          description: `Strategic management of ${subject} teams.`
         }
       ]);
       setStatus("complete");

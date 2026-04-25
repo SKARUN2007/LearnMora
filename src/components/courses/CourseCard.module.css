@@ -34,6 +34,12 @@
   margin-bottom: 1rem;
 }
 
+.providerGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .provider {
   font-size: 0.8rem;
   font-weight: 700;
@@ -50,6 +56,9 @@
   padding: 0.25rem 0.6rem;
   border-radius: var(--radius-full);
   border: 1px solid #d1fae5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .title {
@@ -83,6 +92,7 @@
   margin-bottom: 1.25rem;
   padding-top: 1.25rem;
   border-top: 1px solid var(--surface);
+  margin-top: auto;
 }
 
 .priceContainer {
@@ -185,3 +195,15 @@
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .providerGroup {
+    flex-wrap: wrap;
+  }
+}
+

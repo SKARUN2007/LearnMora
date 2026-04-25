@@ -1,0 +1,96 @@
+.panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 2px solid var(--primary);
+  box-shadow: 0 -20px 40px rgba(0,0,0,0.1);
+  z-index: 1000;
+  max-height: 50vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 1rem 2rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  padding: 1rem 2rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--surface-border);
+  font-size: 0.9rem;
+}
+
+.table th {
+  background: var(--surface);
+  font-weight: 800;
+  color: var(--primary);
+  min-width: 200px;
+}
+
+.courseHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+}
+
+.removeBtn:hover {
+  color: #ef4444;
+}
+
+.roi {
+  color: var(--success);
+  font-weight: 800;
+}
+
+.free {
+  color: var(--success);
+  font-weight: 700;
+}
+
+.footer {
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--surface-border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.enrollAllBtn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+}

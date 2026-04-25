@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getCourseById, Course } from "@/lib/courses";
 import CourseCard from "@/components/courses/CourseCard";
+import OnboardingModal from "@/components/onboarding/OnboardingModal";
 import styles from "./dashboard.module.css";
 
 export default function DashboardPage() {
@@ -43,8 +44,19 @@ export default function DashboardPage() {
     loadLibrary();
   }, [library]);
 
+  const [showOnboarding, setShowOnboarding] = useState(false);
+
+  useEffect(() => {
+    // Check local storage for onboarding state
+    const hasCompleted = localStorage.getItem(`onboarding_complete_${user?.id || 'guest'}`);
+    if (!hasCompleted) {
+      setShowOnboarding(true);
+    }
+  }, [user]);
+
   return (
     <div className={styles.dashboardPage}>
+      {showOnboarding && <OnboardingModal onComplete={() => setShowOnboarding(false)} />}
       <header className={styles.header}>
         <div className={styles.container}>
           <h1>My Learnmora</h1>

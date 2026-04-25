@@ -14,7 +14,7 @@
 }
 
 .container {
-  max-width: 1440px;
+  max-width: 1280px;
   width: 100%;
   margin: 0 auto;
   padding: 0 2rem;
@@ -81,20 +81,30 @@
   font-weight: 500;
   color: var(--primary);
   padding: 0.5rem 1rem;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.loginBtn:hover {
+  color: var(--accent);
+  text-decoration: underline;
 }
 
 .ctaBtn {
-  background: var(--primary);
+  background: #0f172a;
   color: white;
-  padding: 0.6rem 1.25rem;
-  border-radius: var(--radius-md);
+  min-width: 120px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 0.9rem;
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .ctaBtn:hover {
-  background: var(--primary-light);
+  background: #1e293b;
   transform: translateY(-1px);
 }
 
@@ -127,6 +137,79 @@
 
 .hasDropdown:hover .dropdown {
   display: grid;
+}
+
+.userSection {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.profileCircle {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.userDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  padding: 0.75rem;
+  min-width: 180px;
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  z-index: 100;
+}
+
+.userSection:hover .userDropdown {
+  display: flex;
+}
+
+.dropdownItem {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.dropdownItem:hover {
+  background: var(--surface);
+}
+
+.signOutBtn {
+  background: none;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ef4444;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.signOutBtn:hover {
+  background: #fef2f2;
 }
 
 .tier h4 {
@@ -200,6 +283,23 @@
   }
 
   .tier { display: flex; flex-direction: column; margin-bottom: 1.5rem; }
+  
+  .right {
+    display: none;
+  }
+  
+  .mobileAuth {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--surface-border);
+  }
+}
+
+.mobileAuth {
+  display: none;
 }
 
 .backdrop {

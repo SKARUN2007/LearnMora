@@ -155,12 +155,31 @@ export async function getCoursesByCareer(career: string) {
 }
 
 export function calculateValueScore(course: Course) {
-  // Logic: (ROI % * 0.6) + (Rating * 10 * 0.4)
-  // If FREE, add +10 points prestige bonus
   const roiNum = parseInt(course.roi.replace("%", "")) || 0;
   let score = (roiNum * 0.6) + (course.rating * 10 * 0.4);
   if (course.isFree) score += 10;
   return Math.min(Math.round(score), 100);
+}
+
+export function calculateMarketAuthorityScore(course: Course) {
+  // Logic: 0-100 based on Provider Authority + ROI Velocity
+  const authorityMap: Record<string, number> = {
+    "Google Cloud": 95,
+    "Google": 90,
+    "Harvard": 98,
+    "MIT": 99,
+    "Stanford": 99,
+    "IBM": 92,
+    "Microsoft": 94,
+    "Coursera": 85,
+    "edX": 88
+  };
+  
+  const base = authorityMap[course.university || course.provider] || 80;
+  const roiNum = parseInt(course.roi.replace("%", "")) || 0;
+  const velocity = roiNum > 120 ? 5 : (roiNum > 100 ? 2 : 0);
+  
+  return Math.min(base + velocity, 100);
 }
 
 export async function getSubjectCounts() {

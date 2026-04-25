@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   background: white;
-  border-radius: var(--radius-full);
+  border-radius: 8px;
   padding: 0.5rem 0.5rem 0.5rem 1.5rem;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--surface-border);
@@ -38,21 +38,21 @@
 }
 
 .searchBtn {
-  background: var(--primary);
+  background: #0f172a;
   color: white;
   padding: 0.8rem 2rem;
-  border-radius: var(--radius-full);
+  border-radius: 8px;
   font-weight: 600;
   font-size: 1rem;
   transition: background 0.2s ease;
 }
 
 .searchBtn:hover {
-  background: var(--primary-light);
+  background: #1e293b;
 }
 
 .activeBtn {
-  background: var(--primary-light);
+  background: #1e293b;
   box-shadow: 0 0 15px rgba(0, 31, 63, 0.3);
   transform: scale(0.98);
 }
