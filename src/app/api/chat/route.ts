@@ -10,6 +10,9 @@ export async function POST(req: Request) {
       return new Response("API Key Missing: Please ensure GEMINI_API_KEY is set in your .env file.", { status: 500 });
     }
 
+    const body = await req.json();
+    const { messages, attachments } = body;
+
     // The last message from the user
     const lastMessage = messages[messages.length - 1];
     
@@ -70,14 +73,16 @@ export async function POST(req: Request) {
     console.error("Mentor Error Detail:", error);
     
     // High-quality simulated fallback if Gemini API is unavailable
-    const lastMessage = messages[messages.length - 1].content.toLowerCase();
+    const userPrompt = (error as any).messages ? (error as any).messages[(error as any).messages.length - 1].content : "";
     let responseText = "I'm currently optimizing my global knowledge base. As your Learnmora AI, I can tell you that the 2026 professional landscape is shifting rapidly toward AI-integrated roles.";
 
-    if (lastMessage.includes('joke')) {
+    const lastMsgLow = userPrompt.toLowerCase();
+
+    if (lastMsgLow.includes('joke')) {
       responseText = "Why did the AI go to career counseling? Because it had too many 'nodes' but no 'path'! On a serious note, I'm having trouble reaching my main engine right now.";
-    } else if (lastMessage.includes('python') || lastMessage.includes('code')) {
+    } else if (lastMsgLow.includes('python') || lastMsgLow.includes('code')) {
       responseText = "I'm having trouble generating live code right now, but a standard Python function for adding two numbers would look like: \n\n```python\ndef add(a, b):\n    return a + b\n```\n(Note: This is a fallback response due to connectivity issues).";
-    } else if (lastMessage.includes('hi') || lastMessage.includes('hello')) {
+    } else if (lastMsgLow.includes('hi') || lastMsgLow.includes('hello')) {
       responseText = "Hello! I'm the Learnmora AI. I'm currently in a low-power fallback mode while my main Gemini 1.5 Pro engine is being calibrated. How can I assist you with your career goals in the meantime?";
     }
 
