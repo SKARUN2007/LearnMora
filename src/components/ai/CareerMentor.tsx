@@ -47,7 +47,9 @@ export default function CareerMentor() {
     }
   }, [pathname]);
 
-  const handleClearChat = () => {
+  const handleClearChat = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    console.log("Clearing chat history...");
     setMessages([initialMessage]);
     setAttachments([]);
     if (isTyping) handleStopResponse();
@@ -57,6 +59,16 @@ export default function CareerMentor() {
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
       setIsTyping(false);
+      setMessages(prev => {
+        const updated = [...prev];
+        const lastIndex = updated.length - 1;
+        if (updated[lastIndex].content === "") {
+          updated[lastIndex].content = "[Response Stopped]";
+        } else {
+          updated[lastIndex].content += " [Stopped]";
+        }
+        return updated;
+      });
     }
   };
 
