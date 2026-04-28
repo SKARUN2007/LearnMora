@@ -4,6 +4,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
 export async function POST(req: Request) {
+  let messages: any[] = [];
   try {
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey || apiKey === "") {
@@ -11,7 +12,8 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-    const { messages, attachments } = body;
+    messages = body.messages;
+    const { attachments } = body;
 
     // The last message from the user
     const lastMessage = messages[messages.length - 1];
@@ -25,7 +27,7 @@ export async function POST(req: Request) {
     // Convert history for Gemini format
     const history = messages.slice(0, -1).map((m: any) => ({
       role: m.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: m.content || " " }] // Ensure content is never empty
+      parts: [{ text: m.content || " " }]
     }));
 
     const chat = model.startChat({ history });
@@ -58,7 +60,7 @@ export async function POST(req: Request) {
           }
         } catch (err: any) {
           console.error("Stream Error:", err);
-          controller.enqueue(encoder.encode(`\n\n[Error during stream: ${err.message}]`));
+          controller.enqueue(encoder.encode(`\n\n[Stream Error: ${err.message}]`));
         } finally {
           controller.close();
         }
@@ -73,8 +75,8 @@ export async function POST(req: Request) {
     console.error("Mentor Error Detail:", error);
     
     // High-quality simulated fallback if Gemini API is unavailable
-    const userPrompt = (error as any).messages ? (error as any).messages[(error as any).messages.length - 1].content : "";
-    let responseText = "I'm currently optimizing my global knowledge base. As your Learnmora AI, I can tell you that the 2026 professional landscape is shifting rapidly toward AI-integrated roles.";
+    const userPrompt = (messages && messages.length > 0) ? messages[messages.length - 1].content : "";
+    let responseText = `(Technical Error: ${error.message}) I'm currently optimizing my global knowledge base. As your Learnmora AI, I can tell you that the 2026 professional landscape is shifting rapidly toward AI-integrated roles.`;
 
     const lastMsgLow = userPrompt.toLowerCase();
 
