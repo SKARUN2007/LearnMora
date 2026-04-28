@@ -7,9 +7,9 @@
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 .sectionHeader {
@@ -246,16 +246,22 @@
   .rankingsContainer {
     grid-template-columns: 1fr;
   }
+  .discoveryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-@media (max-width: 640px) {
-  .rankingCard {
-    padding: 1.5rem;
-  }
-  .discoveryCol {
-    padding: 1.5rem;
-  }
+@media (max-width: 768px) {
   .discoveryGrid {
     grid-template-columns: 1fr;
+  }
+  .rankingCard {
+    padding: 2rem 1.5rem;
+  }
+  .discoveryCol {
+    padding: 2rem 1.5rem;
+  }
+  .sectionTitle {
+    font-size: 1.75rem;
   }
 }

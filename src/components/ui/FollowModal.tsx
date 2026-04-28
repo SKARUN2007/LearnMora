@@ -15,6 +15,17 @@ export default function FollowModal() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    if (show) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [show]);
+
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     localStorage.setItem("learnmora_follow_dismissed", "true");

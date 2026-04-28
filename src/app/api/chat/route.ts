@@ -4,43 +4,61 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
 export async function POST(req: Request) {
-  let context: any = null;
-  let lastMessage: string = "";
   try {
-    const body = await req.json();
-    const messages = body.messages;
-    context = body.context;
-    lastMessage = messages[messages.length - 1].content;
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey || apiKey === "") {
+      return new Response("API Key Missing: Please ensure GEMINI_API_KEY is set in your .env file.", { status: 500 });
+    }
 
+    // The last message from the user
+    const lastMessage = messages[messages.length - 1];
+    
+    // Prepare the model with system instructions
     const model = genAI.getGenerativeModel({ 
       model: "gemini-1.5-pro",
-      systemInstruction: `
-        You are the Learnmora Global Career Architect & Mentor. 
-        Your goal is to help users reach "Elite Command" in their professional field.
-        
-        Context:
-        - Current Page: ${context?.pageTitle || 'Home'}
-        - User Background: ${context?.userProfile || 'Anonymous Professional'}
-        - Database Scale: 5,000+ courses, 500+ subjects.
-        
-        Style:
-        - Professional, data-driven, and high-authority.
-        - Use Markdown for formatting (bold, tables, lists).
-        - Always mention ROI or market velocity when recommending courses.
-        - Be proactive: If they mention a skill, recommend a specific Learnmora path.
-      `
+      systemInstruction: "You are the Learnmora AI. While your specialty is career roadmapping, you are a master of all subjects. Provide clear, accurate, and helpful responses to any question the user asks, regardless of the topic. Use Markdown, Latex (surrounded by $ or $$), and code blocks where appropriate."
     });
 
-    const result = await model.generateContentStream(lastMessage);
+    // Convert history for Gemini format
+    const history = messages.slice(0, -1).map((m: any) => ({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content || " " }] // Ensure content is never empty
+    }));
+
+    const chat = model.startChat({ history });
+
+    // Prepare parts for the message (text + optional files)
+    const parts: any[] = [{ text: lastMessage.content || " " }];
+    
+    if (attachments && attachments.length > 0) {
+      for (const file of attachments) {
+        if (file.base64 && file.base64.includes(',')) {
+          parts.push({
+            inlineData: {
+              mimeType: file.type,
+              data: file.base64.split(',')[1]
+            }
+          });
+        }
+      }
+    }
+
+    const result = await chat.sendMessageStream(parts);
     
     const encoder = new TextEncoder();
     const stream = new ReadableStream({
       async start(controller) {
-        for await (const chunk of result.stream) {
-          const text = chunk.text();
-          controller.enqueue(encoder.encode(text));
+        try {
+          for await (const chunk of result.stream) {
+            const text = chunk.text();
+            controller.enqueue(encoder.encode(text));
+          }
+        } catch (err: any) {
+          console.error("Stream Error:", err);
+          controller.enqueue(encoder.encode(`\n\n[Error during stream: ${err.message}]`));
+        } finally {
+          controller.close();
         }
-        controller.close();
       },
     });
 
@@ -48,32 +66,28 @@ export async function POST(req: Request) {
       headers: { 'Content-Type': 'text/plain; charset=utf-8' },
     });
 
-  } catch (error) {
-    console.error("Mentor Error:", error);
+  } catch (error: any) {
+    console.error("Mentor Error Detail:", error);
     
     // High-quality simulated fallback if Gemini API is unavailable
-    const msg = lastMessage.toLowerCase();
-    let responseText = `As your Global Career Architect, I'm analyzing your interest in **${context?.pageTitle || 'this career path'}**. Based on current 2026 market velocity, this field is growing at **+24% annually**.`;
+    const lastMessage = messages[messages.length - 1].content.toLowerCase();
+    let responseText = "I'm currently optimizing my global knowledge base. As your Learnmora AI, I can tell you that the 2026 professional landscape is shifting rapidly toward AI-integrated roles.";
 
-    if (msg.includes('roi')) {
-      responseText = `The **ROI** for professional certifications in ${context?.pageTitle || 'this field'} is exceptionally high. On average, Learnmora users see a **$15k - $22k salary uplift** within 6 months of completion. Would you like a specific provider comparison?`;
-    } else if (msg.includes('compare')) {
-      responseText = `I've mapped the top providers. For **${context?.pageTitle || 'this subject'}**, **Google Cloud** offers the best technical depth, while **Harvard (via edX)** provides superior strategic authority. Which one aligns with your goal?`;
-    } else if (msg.includes('free')) {
-      responseText = `Good news! We've indexed **52 free certifications** in this category. You can toggle the 'Gold Filter' in the sidebar to see only the high-authority free paths from Google, IBM, and Meta.`;
-    } else if (msg.includes('hello') || msg.includes('hi')) {
-      responseText = `Hello! I'm your Learnmora Mentor. I can help you compare 5,000+ courses, calculate ROI, and scan your resume for skill gaps. What's your target role for 2026?`;
+    if (lastMessage.includes('joke')) {
+      responseText = "Why did the AI go to career counseling? Because it had too many 'nodes' but no 'path'! On a serious note, I'm having trouble reaching my main engine right now.";
+    } else if (lastMessage.includes('python') || lastMessage.includes('code')) {
+      responseText = "I'm having trouble generating live code right now, but a standard Python function for adding two numbers would look like: \n\n```python\ndef add(a, b):\n    return a + b\n```\n(Note: This is a fallback response due to connectivity issues).";
+    } else if (lastMessage.includes('hi') || lastMessage.includes('hello')) {
+      responseText = "Hello! I'm the Learnmora AI. I'm currently in a low-power fallback mode while my main Gemini 1.5 Pro engine is being calibrated. How can I assist you with your career goals in the meantime?";
     }
-
-    const fallbackResponse = responseText;
 
     const encoder = new TextEncoder();
     const stream = new ReadableStream({
       async start(controller) {
-        const words = fallbackResponse.split(' ');
+        const words = responseText.split(' ');
         for (const word of words) {
           controller.enqueue(encoder.encode(word + ' '));
-          await new Promise(resolve => setTimeout(resolve, 40));
+          await new Promise(resolve => setTimeout(resolve, 30));
         }
         controller.close();
       },

@@ -8,15 +8,28 @@
 .trigger {
   background: var(--primary);
   color: white;
-  padding: 1rem 2rem;
-  border-radius: var(--radius-full);
-  font-weight: 700;
-  box-shadow: var(--shadow-lg);
-  transition: transform 0.2s ease;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 31, 63, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
 }
 
-.trigger:hover {
-  transform: scale(1.05);
+.triggerContent {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.open .trigger {
+  background: white;
+  color: var(--primary);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: rotate(90deg);
 }
 
 .shake {
@@ -34,11 +47,11 @@
   position: absolute;
   bottom: 5rem;
   right: 0;
-  width: 400px;
-  height: 500px;
+  width: 450px;
+  height: 650px;
   background: white;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   border: 1px solid var(--surface-border);
   display: flex;
   flex-direction: column;
@@ -49,19 +62,39 @@
 .chatHeader {
   background: var(--primary);
   color: white;
-  padding: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.chatHeader h3 {
+.headerTitle h3 {
   font-size: 1.1rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.1rem;
 }
 
-.chatHeader span {
+.headerTitle span {
   font-size: 0.7rem;
-  opacity: 0.7;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+.clearBtn {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.clearBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .messages {
@@ -70,141 +103,150 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
+  background: #f8fafc;
 }
 
 .message {
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius-md);
-  font-size: 0.9rem;
-  max-width: 85%;
-  line-height: 1.5;
-}
-
-/* Markdown Specifics inside Message */
-.message table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0.5rem 0;
-  font-size: 0.8rem;
-}
-
-.message th, .message td {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.5rem;
-  text-align: left;
-}
-
-.user table th, .user table td {
-  border-color: rgba(0, 0, 0, 0.1);
-}
-
-.message th {
-  background: rgba(0, 0, 0, 0.1);
-  font-weight: 700;
-}
-
-.message ul, .message ol {
-  margin: 0.5rem 0;
-  padding-left: 1.25rem;
-}
-
-.message li {
-  margin-bottom: 0.25rem;
-}
-
-.message strong {
-  font-weight: 800;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  max-width: 90%;
+  line-height: 1.6;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
 }
 
 .user {
-  background: var(--surface);
+  background: white;
   color: var(--text-main);
   align-self: flex-end;
+  border: 1px solid var(--surface-border);
+  border-bottom-right-radius: 2px;
 }
 
 .assistant {
   background: #0f172a;
   color: white;
   align-self: flex-start;
+  border-bottom-left-radius: 2px;
 }
 
-.assistant p, .assistant span, .assistant div {
-  color: white !important;
+.msgAttachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.attachmentTag {
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  color: #94a3b8;
+}
+
+.user .attachmentTag {
+  background: var(--surface);
+  color: var(--text-muted);
+}
+
+.footerArea {
+  border-top: 1px solid var(--surface-border);
+  background: white;
+}
+
+.attachmentPreview {
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.previewTag {
+  font-size: 0.8rem;
+  background: #f1f5f9;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--primary);
+}
+
+.previewTag svg {
+  cursor: pointer;
+  color: #ef4444;
 }
 
 .inputArea {
   padding: 1rem;
-  border-top: 1px solid var(--surface-border);
   display: flex;
   gap: 0.75rem;
+  align-items: center;
 }
 
 .inputArea input {
   flex: 1;
   border: 1px solid var(--surface-border);
-  padding: 0.6rem 1rem;
-  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
   outline: none;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
 }
 
-.inputArea button {
+.inputArea input:focus {
+  border-color: var(--primary);
+}
+
+.iconBtn, .sendBtn, .stopBtn {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  flex-shrink: 0;
+}
+
+.iconBtn {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.iconBtn:hover {
+  background: #e2e8f0;
+  color: var(--primary);
+}
+
+.sendBtn {
   background: var(--primary);
   color: white;
-  padding: 0.5rem 1.25rem;
-  border-radius: var(--radius-md);
-  font-weight: 700;
 }
 
-.pulse {
-  animation: pulse 2s infinite;
-  box-shadow: 0 0 0 0 rgba(15, 23, 42, 0.7);
+.sendBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 31, 63, 0.2);
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(15, 23, 42, 0.7); }
-  70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(15, 23, 42, 0); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(15, 23, 42, 0); }
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.stopBtn {
+  background: #ef4444;
+  color: white;
 }
 
 @media (max-width: 600px) {
-  .mentor {
-    bottom: 1rem;
-    right: 1rem;
-  }
-
-  .trigger {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.85rem;
-  }
-
   .chatWindow {
     position: fixed;
     bottom: 0;
     right: 0;
     left: 0;
     width: 100%;
-    height: 75dvh;
+    height: 85dvh;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    animation: slideUpMobile 0.3s ease;
   }
-
-  .inputArea {
-    padding: 0.75rem;
-    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
-  }
-
-  .inputArea input {
-    font-size: 16px; /* Prevents iOS zoom on focus */
-  }
-}
-
-@keyframes slideUpMobile {
-  from { opacity: 0; transform: translateY(100%); }
-  to { opacity: 1; transform: translateY(0); }
 }

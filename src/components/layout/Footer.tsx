@@ -11,6 +11,7 @@ export default function Footer() {
           <div className={styles.info}>
             <Link href="/" className={styles.logo}>
               LEARN<span>MORA</span>
+              <small className={styles.tagline}>Innovative EdTech Accelerator</small>
             </Link>
             <p className={styles.description}>
               The global ecosystem for professional excellence. Indexing top-tier courses, university degrees, and AI-driven career roadmaps.
@@ -43,7 +44,8 @@ export default function Footer() {
         <div className={styles.bottom}>
           <p>&copy; {currentYear} Learnmora Omni-Platform. All rights reserved.</p>
           <div className={styles.socials}>
-            {/* Social links placeholder */}
+            <a href="https://linkedin.com/company/learnmora" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://twitter.com/learnmora" target="_blank" rel="noopener noreferrer">Twitter</a>
           </div>
         </div>
       </div>

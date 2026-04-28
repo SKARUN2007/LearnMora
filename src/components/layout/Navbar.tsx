@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css";
@@ -10,6 +10,18 @@ export default function Navbar() {
   const { user, signOut } = useUser();
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  
+  // Scroll-lock when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   return (
     <nav className={`${styles.navbar} ${isOpen ? styles.navOpen : ""}`}>
@@ -17,6 +29,7 @@ export default function Navbar() {
         <div className={styles.left}>
           <Link href="/" className={styles.logo}>
             LEARN<span>MORA</span>
+            <small className={styles.tagline}>Innovative EdTech Accelerator</small>
           </Link>
           
           <button 

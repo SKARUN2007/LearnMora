@@ -60,6 +60,30 @@ a {
   transition: color 0.2s ease;
 }
 
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+/* ─── Fluid Typography ─── */
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); line-height: 1.2; letter-spacing: -0.01em; }
+h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); line-height: 1.3; }
+
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+
+.responsive-heading {
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: 800;
+}
+
 button {
   cursor: pointer;
   border: none;

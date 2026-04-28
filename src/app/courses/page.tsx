@@ -6,6 +6,7 @@ import CourseCard from "@/components/courses/CourseCard";
 import { TAGGED_COURSES } from "@/lib/dynamicTaxonomy";
 import SmartSidebar from "@/components/courses/SmartSidebar";
 import ComparisonPanel from "@/components/courses/ComparisonPanel";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 import styles from "./courses.module.css";
 
 const ADS = [
@@ -142,6 +143,7 @@ export default function CourseDirectory() {
           </div>
         </main>
         <ComparisonPanel />
+        <ScrollToTop />
       </div>
     </div>
   );

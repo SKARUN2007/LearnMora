@@ -19,15 +19,26 @@
 }
 
 .logo {
+  display: flex;
+  flex-direction: column;
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--primary);
   margin-bottom: 1.5rem;
-  display: block;
+  line-height: 1;
 }
 
 .logo span {
   color: var(--accent);
+}
+
+.tagline {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-top: 4px;
 }
 
 .description {

@@ -59,6 +59,7 @@ function LoginContent() {
     <div className={styles.card}>
       <div className={styles.logo}>
         LEARN<span>MORA</span>
+        <small className={styles.tagline}>Innovative EdTech Accelerator</small>
       </div>
 
       <div className={styles.tabs}>

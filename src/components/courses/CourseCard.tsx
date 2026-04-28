@@ -39,7 +39,7 @@ export default function CourseCard(props: CourseCardProps) {
         <div className={styles.providerGroup}>
           <InstitutionLogo 
             src={`/assets/provider-logos/${provider.toLowerCase().replace(/\s+/g, '-')}.svg`} 
-            alt={provider} 
+            alt={`Official ${provider} Institution Logo`} 
             fallbackInitials={provider.substring(0, 2).toUpperCase()} 
             size={24} 
           />
@@ -104,12 +104,14 @@ export default function CourseCard(props: CourseCardProps) {
       
 
       {currentStatus === "completed" && (
-        <button 
+        <a 
+          href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://learnmora.com/ai-credentials')}`}
+          target="_blank"
+          rel="noopener noreferrer"
           className={styles.linkedinBtn}
-          onClick={(e) => { e.stopPropagation(); alert("Syncing with LinkedIn Profile API...") }}
         >
           Add to LinkedIn Profile
-        </button>
+        </a>
       )}
       
       <button className={styles.viewBtn} onClick={handleRoiClick}>

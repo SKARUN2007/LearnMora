@@ -12,8 +12,8 @@
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 31, 63, 0.12);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 30px 60px rgba(0, 31, 63, 0.15);
   border-color: var(--accent);
 }
 
@@ -117,17 +117,24 @@
 .trackBtn, .compareBtn {
   font-size: 0.75rem;
   font-weight: 700;
-  padding: 0.5rem;
+  padding: 0.75rem 1rem;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: var(--radius-sm);
   border: 1px solid var(--surface-border);
   color: var(--text-muted);
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 }
 
 .trackBtn:hover, .compareBtn:hover {
   background: var(--surface);
   border-color: var(--primary);
   color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
 .trackBtn.active, .compareBtn.active {
@@ -196,14 +203,45 @@
   100% { background-position: -200% 0; }
 }
 
-@media (max-width: 600px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+@media (max-width: 768px) {
+  .actions {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
+  
+  .trackBtn, .compareBtn {
+    padding: 1rem;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  .card {
+    padding: 1.25rem;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+  }
+  
   .providerGroup {
-    flex-wrap: wrap;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .provider {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 

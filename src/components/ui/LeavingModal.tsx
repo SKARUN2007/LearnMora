@@ -13,6 +13,10 @@ export default function LeavingModal({ provider, courseTitle }: LeavingModalProp
 
   useEffect(() => {
     setMounted(true);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, []);
 
   if (!mounted) return null;
