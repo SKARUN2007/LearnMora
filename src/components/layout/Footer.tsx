@@ -48,9 +48,9 @@ export default function Footer() {
         </div>
         
         <div className={styles.bottom}>
-          <p>&copy; {currentYear} Learnmora Omni-Platform. All rights reserved.</p>
+          <p>&copy; {currentYear} LearnMora Ai. All rights reserved.</p>
           <div className={styles.socials}>
-            <a href="https://linkedin.com/company/learnmora" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.linkedin.com/company/learnmora-ai" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href="https://twitter.com/learnmora" target="_blank" rel="noopener noreferrer">Twitter</a>
           </div>
         </div>

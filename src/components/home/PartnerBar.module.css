@@ -1,6 +1,6 @@
 .partnerBar {
-  background: white;
-  padding: 3rem 0;
+  padding: 4rem 0;
+  background: var(--surface);
   border-bottom: 1px solid var(--surface-border);
   overflow: hidden;
 }
@@ -9,50 +9,93 @@
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
 }
 
 .label {
-  font-size: 0.75rem;
-  font-weight: 800;
+  font-size: 0.9rem;
+  font-weight: 600;
   color: var(--text-muted);
-  letter-spacing: 0.15em;
-  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.tracksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .logoTrack {
-  width: 100%;
   position: relative;
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  width: 100%;
+  display: flex;
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
 .track {
   display: flex;
-  gap: 6rem;
-  align-items: center;
-  width: fit-content;
+  gap: 3rem;
+  white-space: nowrap;
+  padding: 0.5rem 0;
 }
 
 .partnerLogo {
   display: flex;
   align-items: center;
-  justify-content: center;
-  opacity: 0.5;
+  gap: 0.75rem;
+  padding: 0.5rem 1.25rem;
+  background: white;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
-  filter: grayscale(100%);
 }
 
 .partnerLogo:hover {
-  opacity: 1;
-  filter: grayscale(0%);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
-.logoText {
-  font-size: 1.25rem;
-  font-weight: 900;
-  color: var(--primary);
-  white-space: nowrap;
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  opacity: 0.8;
+}
+
+.logoName {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .partnerBar {
+    padding: 3rem 0;
+  }
+  
+  .track {
+    gap: 1.5rem;
+  }
+  
+  .partnerLogo {
+    padding: 0.4rem 1rem;
+  }
 }
