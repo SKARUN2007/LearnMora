@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import styles from "./ResumeAnalyzer.module.css";
 import Link from "next/link";
+import { Settings, FileText, Lock, Check, X } from "lucide-react";
 import { useUser } from "@/context/UserContext";
 
 interface Props {
@@ -108,7 +109,9 @@ export default function ResumeAnalyzer({ onScanComplete }: Props) {
             style={{ display: "none" }} 
           />
           
-          <div className={styles.icon}>{loadingStage ? "⚙️" : "📄"}</div>
+          <div className={styles.icon}>
+            {loadingStage ? <Settings size={40} className={styles.spin} /> : <FileText size={40} />}
+          </div>
           <h3>{loadingStage ? "Analyzing Profile..." : "Scan Your Resume for Skill Gaps"}</h3>
           
           {loadingStage ? (
@@ -124,7 +127,7 @@ export default function ResumeAnalyzer({ onScanComplete }: Props) {
               <button className={styles.uploadBtn}>Upload Resume (PDF)</button>
               
               <div className={styles.secureBadge}>
-                <span className={styles.lockIcon}>🔒</span> Safe & Encrypted via Supabase
+                <span className={styles.lockIcon}><Lock size={12} /></span> Safe & Encrypted via Supabase
               </div>
             </>
           )}
@@ -143,13 +146,13 @@ export default function ResumeAnalyzer({ onScanComplete }: Props) {
             <div className={styles.matrixColumn}>
               <h4>Current Profile</h4>
               <ul className={styles.haveList}>
-                {result.have.map(item => <li key={item}>✓ {item}</li>)}
+                {result.have.map(item => <li key={item}><Check size={14} style={{ color: 'var(--success)', marginRight: '4px' }} /> {item}</li>)}
               </ul>
             </div>
             <div className={styles.matrixColumn}>
               <h4>Target Architecture</h4>
               <ul className={styles.needList}>
-                {result.need.map(item => <li key={item}>✗ {item}</li>)}
+                {result.need.map(item => <li key={item}><X size={14} style={{ color: 'var(--error)', marginRight: '4px' }} /> {item}</li>)}
               </ul>
             </div>
           </div>
@@ -174,7 +177,7 @@ export default function ResumeAnalyzer({ onScanComplete }: Props) {
           
           {user && (
             <div className={styles.saveNotice}>
-              ✓ Profile data synced to your Professional Access account.
+              <Check size={14} /> Profile data synced to your Professional Access account.
             </div>
           )}
         </div>

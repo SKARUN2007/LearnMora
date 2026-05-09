@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { Lock } from "lucide-react";
 import styles from "./AuthOverlay.module.css";
 
 export default function AuthOverlay({ onClose }: { onClose: () => void }) {
@@ -21,7 +22,7 @@ export default function AuthOverlay({ onClose }: { onClose: () => void }) {
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <button className={styles.closeBtn} onClick={onClose}>✕</button>
-        <div className={styles.iconWrapper}>🔒</div>
+        <div className={styles.iconWrapper}><Lock size={48} /></div>
         <h2>Progress Saved Locally!</h2>
         <p>
           We've temporarily saved your track selection to this device. 

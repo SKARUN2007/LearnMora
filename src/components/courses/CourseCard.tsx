@@ -6,6 +6,7 @@ import { useUser } from "@/context/UserContext";
 import { Course } from "@/lib/courses";
 import RoiModal from "./RoiModal";
 import InstitutionLogo from "@/components/ui/InstitutionLogo";
+import { Heart, Sparkles, Flame, Star, Timer } from "lucide-react";
 import styles from "./CourseCard.module.css";
 
 interface CourseCardProps extends Course {
@@ -57,26 +58,30 @@ export default function CourseCard(props: CourseCardProps) {
           }}
           aria-label="Save Course"
         >
-          {currentStatus === "interested" ? "❤️" : "🤍"}
+          <Heart 
+            size={20} 
+            fill={currentStatus === "interested" ? "var(--accent)" : "none"} 
+            stroke={currentStatus === "interested" ? "var(--accent)" : "currentColor"} 
+          />
         </button>
       </div>
       
       <h3 className={styles.title}>{title}</h3>
       
       <div className={styles.aiInsight}>
-        <span className={styles.aiSparkle}>✨</span>
+        <span className={styles.aiSparkle}><Sparkles size={14} /></span>
         LearnMora Ai: Best for {props.department || "Technical"} Mastery in 2026
       </div>
       
-      <div className={styles.liveViews}>🔥 1,200+ professionals viewing</div>
+      <div className={styles.liveViews}><Flame size={14} /> 1,200+ professionals viewing</div>
       
       <div className={styles.meta}>
         <div className={styles.metaItem}>
-          <span className={styles.icon}>⭐</span>
+          <span className={styles.icon}><Star size={14} fill="var(--warning)" stroke="var(--warning)" /></span>
           <span>{rating.toFixed(1)}</span>
         </div>
         <div className={styles.metaItem}>
-          <span className={styles.icon}>⏱️</span>
+          <span className={styles.icon}><Timer size={14} /></span>
           <span>{duration}</span>
         </div>
       </div>

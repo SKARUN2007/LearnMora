@@ -3,15 +3,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { Search, Brain, TrendingUp, Palette, Clock, BookOpen } from "lucide-react";
 import styles from "./CommandHub.module.css";
 import { ALL_INSTITUTIONS, getLogoUrl } from "@/lib/institutions";
 import InstitutionLogo from "@/components/ui/InstitutionLogo";
 
 const RECENT_SEARCHES = ["AI Engineering", "Harvard Data Science", "Google UX Design"];
 const CATEGORIES = [
-  { id: "ai", name: "Artificial Intelligence", icon: "🧠" },
-  { id: "business", name: "Business & Finance", icon: "📈" },
-  { id: "design", name: "Experience Design", icon: "🎨" },
+  { id: "ai", name: "Artificial Intelligence", icon: <Brain size={20} /> },
+  { id: "business", name: "Business & Finance", icon: <TrendingUp size={20} /> },
+  { id: "design", name: "Experience Design", icon: <Palette size={20} /> },
 ];
 
 export const CommandHub = () => {
@@ -53,7 +54,7 @@ export const CommandHub = () => {
   return (
     <>
       <div className={styles.searchTrigger} onClick={() => setIsOpen(true)}>
-        <span className={styles.triggerIcon}>🔍</span>
+        <span className={styles.triggerIcon}><Search size={18} /></span>
         <span className={styles.triggerText}>Search courses, universities...</span>
         <span className={styles.shortcut}>⌘K</span>
       </div>
@@ -75,7 +76,7 @@ export const CommandHub = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className={styles.header}>
-                <span className={styles.modalIcon}>🔍</span>
+                <span className={styles.modalIcon}><Search size={22} /></span>
                 <input 
                   ref={inputRef}
                   type="text" 
@@ -92,9 +93,9 @@ export const CommandHub = () => {
                     <section>
                       <label>Recent Searches</label>
                       <div className={styles.list}>
-                        {RECENT_SEARCHES.map((s) => (
+                          {RECENT_SEARCHES.map((s) => (
                           <div key={s} className={styles.item} onClick={() => handleSearch(s)}>
-                            <span className={styles.itemIcon}>🕒</span>
+                            <span className={styles.itemIcon}><Clock size={16} /></span>
                             {s}
                           </div>
                         ))}
@@ -119,7 +120,7 @@ export const CommandHub = () => {
                     <div className={styles.resultGroup}>
                       <label>Suggested Courses</label>
                       <div className={styles.item} onClick={() => handleSearch(query)}>
-                        <span className={styles.itemIcon}>📚</span>
+                        <span className={styles.itemIcon}><BookOpen size={16} /></span>
                         Search for "{query}" in Course Index
                       </div>
                     </div>

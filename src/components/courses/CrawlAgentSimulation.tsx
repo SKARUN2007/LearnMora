@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import CourseCard from "@/components/courses/CourseCard";
 import { Course } from "@/lib/courses";
 import styles from "./CrawlAgentSimulation.module.css";
-import { Loader2 } from "lucide-react";
+import { Loader2, Check } from "lucide-react";
 
 export default function CrawlAgentSimulation({ subject }: { subject: string }) {
   const [status, setStatus] = useState("initiating");
@@ -73,7 +73,7 @@ export default function CrawlAgentSimulation({ subject }: { subject: string }) {
     return (
       <div className={styles.container}>
         <div className={styles.successBanner}>
-          ✓ Learnmora Agent successfully indexed 3 new free certifications for {subject}.
+          <Check size={18} style={{ marginRight: '8px' }} /> Learnmora Agent successfully indexed 3 new free certifications for {subject}.
         </div>
         <div className={styles.grid}>
           {mockCourses.map(c => <CourseCard key={c.id} {...c} />)}

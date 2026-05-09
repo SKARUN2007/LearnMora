@@ -1,3 +1,4 @@
+import { Flame } from "lucide-react";
 import styles from "./Gamification.module.css";
 
 export default function Gamification() {
@@ -10,7 +11,7 @@ export default function Gamification() {
   return (
     <div className={styles.container}>
       <div className={styles.streakCard}>
-        <div className={styles.streakIcon}>🔥</div>
+        <div className={styles.streakIcon}><Flame size={24} fill="var(--error)" stroke="var(--error)" /></div>
         <div className={styles.streakInfo}>
           <h3>12 Day Streak</h3>
           <p>Complete one lesson today to keep your streak alive!</p>

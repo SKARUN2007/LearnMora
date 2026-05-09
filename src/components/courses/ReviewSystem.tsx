@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Star, Check } from "lucide-react";
 import styles from "./ReviewSystem.module.css";
 
 interface Review {
@@ -60,7 +61,16 @@ export default function ReviewSystem({ courseId }: { courseId: string }) {
       <div className={styles.header}>
         <div className={styles.overview}>
           <span className={styles.avg}>{avgRating}</span>
-          <div className={styles.stars}>{"★".repeat(Math.round(parseFloat(avgRating)))}{"☆".repeat(5 - Math.round(parseFloat(avgRating)))}</div>
+          <div className={styles.stars}>
+            {[1, 2, 3, 4, 5].map(num => (
+              <Star 
+                key={num} 
+                size={14} 
+                fill={num <= Math.round(parseFloat(avgRating)) ? "var(--warning)" : "none"} 
+                stroke="var(--warning)" 
+              />
+            ))}
+          </div>
           <span className={styles.count}>({reviews.length} Verified Reviews)</span>
         </div>
         <button className={styles.writeBtn} onClick={() => setOpen(!open)}>
@@ -79,7 +89,7 @@ export default function ReviewSystem({ courseId }: { courseId: string }) {
                 className={rating >= num ? styles.starActive : styles.star}
                 onClick={() => setRating(num)}
               >
-                ★
+                <Star size={18} fill={rating >= num ? "var(--warning)" : "none"} stroke="var(--warning)" />
               </button>
             ))}
           </div>
@@ -105,10 +115,17 @@ export default function ReviewSystem({ courseId }: { courseId: string }) {
                 </div>
               </div>
               <div className={styles.reviewStars}>
-                {"★".repeat(review.rating)}{"☆".repeat(5 - review.rating)}
+                {[1, 2, 3, 4, 5].map(num => (
+                  <Star 
+                    key={num} 
+                    size={14} 
+                    fill={num <= review.rating ? "var(--warning)" : "none"} 
+                    stroke="var(--warning)" 
+                  />
+                ))}
               </div>
             </div>
-            {review.verified && <div className={styles.verifiedBadge}>✓ Verified Alumni</div>}
+            {review.verified && <div className={styles.verifiedBadge}><Check size={12} style={{ marginRight: '4px' }} /> Verified Alumni</div>}
             <p className={styles.comment}>{review.comment}</p>
           </div>
         ))}

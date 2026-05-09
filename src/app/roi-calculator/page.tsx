@@ -16,6 +16,7 @@ import {
 import { Line } from "react-chartjs-2";
 import styles from "./RoiCalculator.module.css";
 import Link from "next/link";
+import { Star } from "lucide-react";
 
 ChartJS.register(
   CategoryScale,
@@ -184,12 +185,16 @@ export default function RoiCalculator() {
               <div className={styles.recGrid}>
                 <div className={styles.recCard}>
                   <strong>Advanced AI Architecture</strong>
-                  <span>Google Cloud • 4.9⭐</span>
+                  <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                    Google Cloud • 4.9 <Star size={14} fill="var(--warning)" stroke="var(--warning)" />
+                  </span>
                   <Link href="/courses">Enroll Free</Link>
                 </div>
                 <div className={styles.recCard}>
                   <strong>Strategic Business Ops</strong>
-                  <span>Wharton • 4.8⭐</span>
+                  <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                    Wharton • 4.8 <Star size={14} fill="var(--warning)" stroke="var(--warning)" />
+                  </span>
                   <Link href="/courses">Enroll Free</Link>
                 </div>
               </div>

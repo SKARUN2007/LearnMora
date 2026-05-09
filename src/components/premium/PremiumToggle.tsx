@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Search, Shield, Check } from "lucide-react";
 import styles from "./PremiumToggle.module.css";
 
 export default function PremiumToggle() {
@@ -23,14 +24,14 @@ export default function PremiumToggle() {
 
       <div className={styles.features}>
         <div className={styles.feature}>
-          <span className={styles.icon}>🔍</span>
+          <span className={styles.icon}><Search size={20} /></span>
           <div>
             <strong>AI Resume Deep-Scan</strong>
             <p>Unlimited high-fidelity parsing & gap analysis.</p>
           </div>
         </div>
         <div className={styles.feature}>
-          <span className={styles.icon}>🛡️</span>
+          <span className={styles.icon}><Shield size={20} /></span>
           <div>
             <strong>Salary Shield</strong>
             <p>Real-time alerts on your market value shifts.</p>
@@ -39,7 +40,7 @@ export default function PremiumToggle() {
       </div>
 
       {isPremium ? (
-        <div className={styles.statusActive}>✓ Premium Features Activated</div>
+        <div className={styles.statusActive}><Check size={16} /> Premium Features Activated</div>
       ) : (
         <button className={styles.upgradeBtn}>Upgrade for $12/mo</button>
       )}

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { Star, Timer } from "lucide-react";
 import { TAGGED_COURSES } from "@/lib/dynamicTaxonomy";
 import CourseCard from "@/components/courses/CourseCard";
 
@@ -56,11 +57,15 @@ export default async function CoursePage({ params }: Props) {
            <div style={{ display: "flex", gap: "2rem", marginBottom: "2rem" }}>
               <div>
                 <div style={{ fontSize: "0.75rem", fontWeight: 800, color: "var(--text-muted)" }}>RATING</div>
-                <div style={{ fontSize: "1.5rem", fontWeight: 700 }}>⭐ {course.rating.toFixed(1)}</div>
+                <div style={{ fontSize: "1.5rem", fontWeight: 700, display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <Star size={20} fill="var(--warning)" stroke="var(--warning)" /> {course.rating.toFixed(1)}
+                </div>
               </div>
               <div>
                 <div style={{ fontSize: "0.75rem", fontWeight: 800, color: "var(--text-muted)" }}>DURATION</div>
-                <div style={{ fontSize: "1.5rem", fontWeight: 700 }}>⏱️ {course.duration}</div>
+                <div style={{ fontSize: "1.5rem", fontWeight: 700, display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <Timer size={20} /> {course.duration}
+                </div>
               </div>
               <div>
                 <div style={{ fontSize: "0.75rem", fontWeight: 800, color: "var(--text-muted)" }}>ROI IMPACT</div>

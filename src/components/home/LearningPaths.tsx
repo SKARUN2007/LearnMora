@@ -4,13 +4,14 @@ import React from "react";
 import styles from "./LearningPaths.module.css";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Brain, TrendingUp, Palette, Code, Zap } from "lucide-react";
 
 const PATHS = [
-  { id: "ai", title: "Artificial Intelligence", icon: "🧠", count: "1,200+ Courses", color: "#8b5cf6" },
-  { id: "business", title: "Business Strategy", icon: "📈", count: "850+ Courses", color: "#10b981" },
-  { id: "design", title: "Experience Design", icon: "🎨", count: "600+ Courses", color: "#f59e0b" },
-  { id: "engineering", title: "Software Engineering", icon: "💻", count: "1,500+ Courses", color: "#3b82f6" },
-  { id: "eee", title: "Electrical Engineering", icon: "⚡", count: "450+ Courses", color: "#f43f5e" },
+  { id: "ai", title: "Artificial Intelligence", icon: <Brain size={24} />, count: "1,200+ Courses", color: "#8b5cf6" },
+  { id: "business", title: "Business Strategy", icon: <TrendingUp size={24} />, count: "850+ Courses", color: "#10b981" },
+  { id: "design", title: "Experience Design", icon: <Palette size={24} />, count: "600+ Courses", color: "#f59e0b" },
+  { id: "engineering", title: "Software Engineering", icon: <Code size={24} />, count: "1,500+ Courses", color: "#3b82f6" },
+  { id: "eee", title: "Electrical Engineering", icon: <Zap size={24} />, count: "450+ Courses", color: "#f43f5e" },
 ];
 
 export const LearningPaths = () => {

@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { Search } from "lucide-react";
 import styles from "./OmniSearch.module.css";
 import { Course } from "@/lib/courses";
 import InstitutionLogo from "@/components/ui/InstitutionLogo";
@@ -72,7 +73,7 @@ export default function OmniSearch() {
   return (
     <div className={styles.searchWrapper}>
       <div className={styles.searchBar}>
-        <span className={styles.icon}>🔍</span>
+        <span className={styles.icon}><Search size={20} /></span>
         <input
           type="text"
           placeholder="Generative AI Specialist|"

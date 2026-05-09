@@ -1,5 +1,6 @@
 import { getCourses } from "@/lib/courses";
 import CourseCard from "@/components/courses/CourseCard";
+import { Target, Zap } from "lucide-react";
 import styles from "./profile.module.css";
 
 interface PageProps {
@@ -54,11 +55,11 @@ export default async function UserProfile({ params }: PageProps) {
           <h2>Earned Skill Badges</h2>
           <div className={styles.badgeGrid}>
             <div className={styles.badge}>
-              <span className={styles.icon}>🎯</span>
+              <span className={styles.icon}><Target size={24} /></span>
               <span>AI Architect</span>
             </div>
             <div className={styles.badge}>
-              <span className={styles.icon}>⚡</span>
+              <span className={styles.icon}><Zap size={24} /></span>
               <span>Fast Learner</span>
             </div>
           </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Check } from "lucide-react";
 import styles from "./ShareRoadmap.module.css";
 
 export default function ShareRoadmap() {
@@ -29,7 +30,7 @@ export default function ShareRoadmap() {
       </button>
       
       <div className={styles.previewNote}>
-        ✓ Includes "Learnmora Verified" badge and 2026 Salary Projection.
+        <Check size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} /> Includes "Learnmora Verified" badge and 2026 Salary Projection.
       </div>
     </div>
   );

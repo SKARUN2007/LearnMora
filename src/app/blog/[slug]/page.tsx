@@ -5,7 +5,9 @@ import styles from "./report.module.css";
 import { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { Flame, Zap } from "lucide-react";
 import Link from "next/link";
+import React from "react";
 
 interface PageProps {
   params: { slug: string };
@@ -73,12 +75,51 @@ export default async function ReportPage({ params }: PageProps) {
                 remarkPlugins={[remarkGfm]}
                 components={{
                   a: ({node, ...props}) => {
-                    // Auto internalize
                     const href = props.href || "";
                     if(href.startsWith('/')) {
                       return <Link href={href} {...props} />
                     }
                     return <a target="_blank" rel="noopener noreferrer" {...props} />
+                  },
+                  p: ({children}) => {
+                    const replaceEmojis = (node: any): any => {
+                      if (typeof node === 'string') {
+                        let elements: any[] = [];
+                        let lastIdx = 0;
+                        const regex = /🔥|⚡/g;
+                        let match;
+                        while ((match = regex.exec(node)) !== null) {
+                          elements.push(node.substring(lastIdx, match.index));
+                          if (match[0] === '🔥') elements.push(<Flame key={match.index} size={14} color="var(--error)" style={{ display: 'inline', verticalAlign: 'middle' }} />);
+                          if (match[0] === '⚡') elements.push(<Zap key={match.index} size={14} color="var(--accent)" style={{ display: 'inline', verticalAlign: 'middle' }} />);
+                          lastIdx = regex.lastIndex;
+                        }
+                        elements.push(node.substring(lastIdx));
+                        return elements;
+                      }
+                      return node;
+                    };
+                    return <p>{Array.isArray(children) ? children.map(replaceEmojis) : replaceEmojis(children)}</p>;
+                  },
+                  td: ({children}) => {
+                     const replaceEmojis = (node: any): any => {
+                      if (typeof node === 'string') {
+                        let elements: any[] = [];
+                        let lastIdx = 0;
+                        const regex = /🔥|⚡/g;
+                        let match;
+                        while ((match = regex.exec(node)) !== null) {
+                          elements.push(node.substring(lastIdx, match.index));
+                          if (match[0] === '🔥') elements.push(<Flame key={match.index} size={14} color="var(--error)" style={{ display: 'inline', verticalAlign: 'middle' }} />);
+                          if (match[0] === '⚡') elements.push(<Zap key={match.index} size={14} color="var(--accent)" style={{ display: 'inline', verticalAlign: 'middle' }} />);
+                          lastIdx = regex.lastIndex;
+                        }
+                        elements.push(node.substring(lastIdx));
+                        return elements;
+                      }
+                      return node;
+                    };
+                    return <td>{Array.isArray(children) ? children.map(replaceEmojis) : replaceEmojis(children)}</td>;
                   }
                 }}
               >

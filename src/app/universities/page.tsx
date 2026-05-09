@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { GraduationCap, Building2, BookOpen, MapPin, Check } from "lucide-react";
 import styles from "./universities.module.css";
 import { ALL_INSTITUTIONS, getLogoUrl, Institution } from "@/lib/institutions";
 
@@ -116,7 +117,7 @@ function InstitutionCard({ inst, logoFailed, onLogoError }: { inst: Institution;
   };
 
   const initials = inst.name.split(" ").map(w => w[0]).join("").substring(0, 2).toUpperCase();
-  const typeLabel = inst.type === "university" ? "🎓" : inst.type === "corporate" ? "🏢" : "📚";
+  const typeIcon = inst.type === "university" ? <GraduationCap size={14} /> : inst.type === "corporate" ? <Building2 size={14} /> : <BookOpen size={14} />;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -151,8 +152,8 @@ function InstitutionCard({ inst, logoFailed, onLogoError }: { inst: Institution;
         <div className={styles.cardInfo}>
           <h2>{inst.name}</h2>
           <div className={styles.cardMeta}>
-            <span>{typeLabel} {inst.type.charAt(0).toUpperCase() + inst.type.slice(1)}</span>
-            <span>📍 {inst.country}</span>
+            <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>{typeIcon} {inst.type.charAt(0).toUpperCase() + inst.type.slice(1)}</span>
+            <span style={{ display: "flex", alignItems: "center", gap: "4px" }}><MapPin size={14} /> {inst.country}</span>
           </div>
           {inst.ranking && <div className={styles.rankBadge}>QS #{inst.ranking}</div>}
           <div className={styles.browseAction}>Browse →</div>
@@ -162,7 +163,7 @@ function InstitutionCard({ inst, logoFailed, onLogoError }: { inst: Institution;
         className={`${styles.followBtn} ${isFollowing ? styles.followActive : ""}`}
         onClick={toggleFollow}
       >
-        {isFollowing ? "✓ Following" : "+ Follow"}
+        {isFollowing ? <><Check size={14} style={{ marginRight: '4px' }} /> Following</> : "+ Follow"}
       </button>
     </div>
   );
