@@ -30,7 +30,7 @@ export default function CareerMentor() {
 
   const initialMessage: Message = { 
     role: "assistant", 
-    content: "Hello! I'm your Learnmora AI. I'm a master of all subjects—from career roadmapping to technical problem solving. How can I help you today?" 
+    content: "Hello! I'm your LearnMora Ai Mentor. I'm a master of all subjects—from career roadmapping to technical problem solving. How can I help you today?" 
   };
 
   const [messages, setMessages] = useState<Message[]>([initialMessage]);
@@ -180,7 +180,7 @@ export default function CareerMentor() {
         <div className={styles.chatWindow}>
           <div className={styles.chatHeader}>
             <div className={styles.headerTitle}>
-              <h3>Learnmora AI</h3>
+              <h3>LearnMora Ai Mentor</h3>
               <span>Global Agent • Gemini 1.5 Pro</span>
             </div>
             <button className={styles.clearBtn} onClick={handleClearChat} title="Clear Chat">

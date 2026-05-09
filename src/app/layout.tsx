@@ -12,17 +12,17 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Learnmora - Premier Professional Course Ecosystem",
-    default: "Learnmora | The Global Index for Professional Certificates & Degrees",
+    template: "%s | LearnMora Ai - Premier Professional Course Ecosystem",
+    default: "LearnMora Ai | The Global Index for Professional Certificates & Degrees",
   },
   description: "Aggregating the world's best courses from Coursera, Udemy, Harvard, MIT, and more. Track your learning, analyze your resume, and build your career roadmap with AI.",
   keywords: ["online courses", "professional certificates", "career roadmap", "resume analyzer", "free courses", "university degrees"],
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://learnmora.com'),
   openGraph: {
-    title: "Learnmora | Global Professional Course Ecosystem",
+    title: "LearnMora Ai | Global Professional Course Ecosystem",
     description: "Build your future with verified credentials from top universities and tech giants.",
     type: "website",
-    siteName: "Learnmora",
+    siteName: "LearnMora Ai",
   },
 };
 

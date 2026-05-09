@@ -31,26 +31,18 @@
 
 .logo {
   display: flex;
-  flex-direction: column;
-  line-height: 1;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--primary);
-  letter-spacing: -0.5px;
-  font-family: var(--font-main);
+  align-items: center;
+  transition: transform 0.2s ease;
 }
 
-.logo span {
-  color: var(--accent);
+.logo:hover {
+  transform: scale(1.02);
 }
 
-.tagline {
-  font-size: 0.6rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--text-muted);
-  margin-top: 2px;
+.logoImage {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
 }
 
 .links {

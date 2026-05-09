@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import styles from "./Navbar.module.css";
 import { useUser } from "@/context/UserContext";
 
@@ -28,8 +29,14 @@ export default function Navbar() {
       <div className={styles.container}>
         <div className={styles.left}>
           <Link href="/" className={styles.logo}>
-            LEARN<span>MORA</span>
-            <small className={styles.tagline}>Innovative EdTech Accelerator</small>
+            <Image 
+              src="/logo.png" 
+              alt="LearnMora Ai Logo" 
+              width={180} 
+              height={45} 
+              priority
+              className={styles.logoImage}
+            />
           </Link>
           
           <button 

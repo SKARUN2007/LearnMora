@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     // Prepare the model with system instructions
     const model = genAI.getGenerativeModel({ 
       model: "gemini-1.5-pro",
-      systemInstruction: "You are the Learnmora AI. While your specialty is career roadmapping, you are a master of all subjects. Provide clear, accurate, and helpful responses to any question the user asks, regardless of the topic. Use Markdown, Latex (surrounded by $ or $$), and code blocks where appropriate."
+      systemInstruction: "You are the LearnMora Ai Mentor. While your specialty is career roadmapping, you are a master of all subjects. Provide clear, accurate, and helpful responses to any question the user asks, regardless of the topic. Use Markdown, Latex (surrounded by $ or $$), and code blocks where appropriate."
     });
 
     // Convert history for Gemini format
@@ -76,7 +76,7 @@ export async function POST(req: Request) {
     
     // High-quality simulated fallback if Gemini API is unavailable
     const userPrompt = (messages && messages.length > 0) ? messages[messages.length - 1].content : "";
-    let responseText = `(Technical Error: ${error.message}) I'm currently optimizing my global knowledge base. As your Learnmora AI, I can tell you that the 2026 professional landscape is shifting rapidly toward AI-integrated roles.`;
+    let responseText = `(Technical Error: ${error.message}) I'm currently optimizing my global knowledge base. As your LearnMora Ai Mentor, I can tell you that the 2026 professional landscape is shifting rapidly toward AI-integrated roles.`;
 
     const lastMsgLow = userPrompt.toLowerCase();
 
@@ -85,7 +85,7 @@ export async function POST(req: Request) {
     } else if (lastMsgLow.includes('python') || lastMsgLow.includes('code')) {
       responseText = "I'm having trouble generating live code right now, but a standard Python function for adding two numbers would look like: \n\n```python\ndef add(a, b):\n    return a + b\n```\n(Note: This is a fallback response due to connectivity issues).";
     } else if (lastMsgLow.includes('hi') || lastMsgLow.includes('hello')) {
-      responseText = "Hello! I'm the Learnmora AI. I'm currently in a low-power fallback mode while my main Gemini 1.5 Pro engine is being calibrated. How can I assist you with your career goals in the meantime?";
+      responseText = "Hello! I'm the LearnMora Ai Mentor. I'm currently in a low-power fallback mode while my main Gemini 1.5 Pro engine is being calibrated. How can I assist you with your career goals in the meantime?";
     }
 
     const encoder = new TextEncoder();

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
@@ -10,8 +11,13 @@ export default function Footer() {
         <div className={styles.grid}>
           <div className={styles.info}>
             <Link href="/" className={styles.logo}>
-              LEARN<span>MORA</span>
-              <small className={styles.tagline}>Innovative EdTech Accelerator</small>
+              <Image 
+                src="/logo.png" 
+                alt="LearnMora Ai Logo" 
+                width={180} 
+                height={45} 
+                className={styles.logoImage}
+              />
             </Link>
             <p className={styles.description}>
               The global ecosystem for professional excellence. Indexing top-tier courses, university degrees, and AI-driven career roadmaps.

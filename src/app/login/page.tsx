@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 import styles from "./login.module.css";
 import { supabase } from "@/lib/supabase";
 
@@ -58,8 +59,14 @@ function LoginContent() {
   return (
     <div className={styles.card}>
       <div className={styles.logo}>
-        LEARN<span>MORA</span>
-        <small className={styles.tagline}>Innovative EdTech Accelerator</small>
+        <Image 
+          src="/logo.png" 
+          alt="LearnMora Ai Logo" 
+          width={240} 
+          height={60} 
+          priority
+          className={styles.logoImage}
+        />
       </div>
 
       <div className={styles.tabs}>

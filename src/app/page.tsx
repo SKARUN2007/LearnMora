@@ -91,7 +91,7 @@ export default function Home() {
         <div className={styles.container}>
           <div className={styles.rankingsHeader}>
             <div className={styles.blueRibbon}>🏆</div>
-            <h2>Over 250,000 reviews written by Learnmora users help you pick the best course.</h2>
+            <h2>Over 250,000 reviews written by LearnMora Ai users help you pick the best course.</h2>
           </div>
           
           <div className={styles.rankingsContainer}>

@@ -37,26 +37,15 @@
 
 .logo {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--primary);
   margin-bottom: 2.5rem;
-  line-height: 1;
 }
 
-.logo span {
-  color: var(--accent);
-}
-
-.tagline {
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-muted);
-  margin-top: 6px;
+.logoImage {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
 }
 
 .tabs {
