@@ -10,6 +10,7 @@ const PATHS = [
   { id: "business", title: "Business Strategy", icon: "📈", count: "850+ Courses", color: "#10b981" },
   { id: "design", title: "Experience Design", icon: "🎨", count: "600+ Courses", color: "#f59e0b" },
   { id: "engineering", title: "Software Engineering", icon: "💻", count: "1,500+ Courses", color: "#3b82f6" },
+  { id: "eee", title: "Electrical Engineering", icon: "⚡", count: "450+ Courses", color: "#f43f5e" },
 ];
 
 export const LearningPaths = () => {

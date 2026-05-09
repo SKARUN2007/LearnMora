@@ -76,11 +76,14 @@ export default function Hero() {
           <div className={styles.badge}>
             <span>NEW</span> 100% Free Professional Certificates for 2026
           </div>
+          <div className={styles.triadTagline}>
+            <span>Degree for Interviews</span> • <span>Skills for Jobs</span> • <span>Attitude for Growth</span>
+          </div>
           <h1 className="hero-title">
             Master Your Career with <br /> <span className={styles.accentText}>Global Authority</span>
           </h1>
           <p className={styles.subtitle}>
-            The world's premier index for Ivy League degrees, professional certifications, and AI-driven career blueprints. 
+            The global EdTech accelerator for Ivy League degrees, professional certifications, and AI-driven career blueprints. 
             Stop searching. Start sovereign learning.
           </p>
           
