@@ -10,6 +10,7 @@ import styles from "./CourseCard.module.css";
 
 interface CourseCardProps extends Course {
   isComparisonView?: boolean;
+  department?: string;
 }
 
 export default function CourseCard(props: CourseCardProps) {
