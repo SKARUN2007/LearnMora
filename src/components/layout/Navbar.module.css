@@ -1,6 +1,5 @@
 .navbar {
   height: var(--nav-height);
-  border-bottom: 1px solid var(--surface-border);
   position: fixed;
   top: 0;
   left: 0;
@@ -8,9 +7,12 @@
   z-index: 1000;
   display: flex;
   align-items: center;
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
 .container {
@@ -65,13 +67,13 @@
 .activeLink::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: -8px;
   left: 0;
   width: 100%;
-  height: 2px;
-  background-color: var(--accent);
-  border-radius: 2px;
-  box-shadow: 0 0 10px var(--accent), 0 0 5px var(--accent);
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
 }
 
 .right {
@@ -98,22 +100,24 @@
 }
 
 .ctaBtn {
-  background: #0f172a;
+  background: var(--primary);
   color: white;
-  min-width: 120px;
-  height: 44px;
+  min-width: 130px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  font-weight: 600;
+  border-radius: var(--radius-md);
+  font-weight: 700;
   font-size: 0.9rem;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px 0 rgba(15, 23, 42, 0.2);
 }
 
 .ctaBtn:hover {
-  background: #1e293b;
-  transform: translateY(-1px);
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
 }
 
 .userDashboardMenu {
@@ -127,12 +131,12 @@
   font-size: 0.7rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
   color: var(--accent);
-  background: rgba(212, 175, 55, 0.1);
-  padding: 0.3rem 0.75rem;
+  background: rgba(139, 92, 246, 0.08);
+  padding: 0.4rem 0.8rem;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  border: 1px solid rgba(139, 92, 246, 0.2);
   white-space: nowrap;
 }
 

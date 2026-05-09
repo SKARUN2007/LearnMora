@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   description: "Aggregating the world's best courses from Coursera, Udemy, Harvard, MIT, and more. Track your learning, analyze your resume, and build your career roadmap with AI.",
   keywords: ["online courses", "professional certificates", "career roadmap", "resume analyzer", "free courses", "university degrees"],
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://learnmora.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://learn-mora.vercel.app'),
   openGraph: {
     title: "LearnMora Ai | Global Professional Course Ecosystem",
     description: "Build your future with verified credentials from top universities and tech giants.",
