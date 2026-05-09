@@ -4,14 +4,25 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Navbar.module.css";
 import { useUser } from "@/context/UserContext";
 
 export default function Navbar() {
   const { user, signOut } = useUser();
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   
+  // Handle scroll state for "MNC" sticky effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   // Scroll-lock when mobile menu is open
   useEffect(() => {
     if (isOpen) {
@@ -25,18 +36,30 @@ export default function Navbar() {
   }, [isOpen]);
 
   return (
-    <nav className={`${styles.navbar} ${isOpen ? styles.navOpen : ""}`}>
+    <nav className={`${styles.navbar} ${isOpen ? styles.navOpen : ""} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.container}>
         <div className={styles.left}>
           <Link href="/" className={styles.logo}>
-            <Image 
-              src="/logo.png" 
-              alt="LearnMora Ai Logo" 
-              width={180} 
-              height={45} 
-              priority
-              className={styles.logoImage}
-            />
+            <motion.div
+              initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
+              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              whileHover={{ 
+                scale: 1.05,
+                filter: "drop-shadow(0 0 8px rgba(139, 92, 246, 0.4))",
+              }}
+              whileTap={{ scale: 0.95 }}
+              className={styles.logoWrapper}
+            >
+              <Image 
+                src="/logo.png" 
+                alt="LearnMora Ai Logo" 
+                width={180} 
+                height={45} 
+                priority
+                className={styles.logoImage}
+              />
+            </motion.div>
           </Link>
           
           <button 
@@ -70,6 +93,13 @@ export default function Navbar() {
               className={pathname.startsWith("/roadmap") ? styles.activeLink : ""}
             >
               Career Roadmap
+            </Link>
+            <Link 
+              href="/roi-calculator" 
+              onClick={() => setIsOpen(false)}
+              className={pathname.startsWith("/roi-calculator") ? styles.activeLink : ""}
+            >
+              ROI Engine
             </Link>
 
             {/* Mobile-only Auth Links */}

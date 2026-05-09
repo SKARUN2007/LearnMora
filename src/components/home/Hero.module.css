@@ -4,13 +4,11 @@
 }
 
 .container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  gap: clamp(4rem, 10vw, 10rem);
+  min-height: 80vh;
 }
 
 .heroLeft {
@@ -21,9 +19,12 @@
 
 .illustrationWrapper {
   max-width: 100%;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-premium);
+  background: white;
+  padding: 2rem;
+  border: 1px solid var(--glass-border);
 }
 
 .heroImg {
@@ -34,10 +35,12 @@
 }
 
 .heroRight {
+  flex: 1;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 2;
 }
 
 .badge {
@@ -72,19 +75,20 @@
   letter-spacing: -1.5px;
 }
 
-.title span {
+.accentText {
   color: var(--accent);
-  background: linear-gradient(120deg, var(--accent) 0%, #b8931b 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 
 .subtitle {
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
   color: var(--text-muted);
-  margin-bottom: 2.5rem;
-  max-width: 700px;
-  line-height: 1.6;
+  margin-bottom: 3.5rem;
+  max-width: 800px;
+  line-height: 1.5;
 }
 
 /* ─── Pill Tags ─── */

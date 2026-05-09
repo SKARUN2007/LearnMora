@@ -21,8 +21,6 @@
   
   --success: #10b981;
   --warning: #f59e0b;
-  --error: #ef4444;
-  
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
@@ -35,6 +33,7 @@
   --radius-full: 9999px;
 
   --nav-height: 80px;
+  --container-max: 1720px;
   --font-main: var(--font-outfit), 'Inter', sans-serif;
 }
 
@@ -68,9 +67,9 @@ a {
 }
 
 .container {
-  max-width: 1440px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 clamp(1.5rem, 5vw, 6rem);
   width: 100%;
 }
 
@@ -171,14 +170,34 @@ li {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Premium Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Anti-Gravity Drifting */
+@keyframes drift {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+  100% { transform: translateY(0) rotate(0deg); }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+@keyframes float {
+  0% { transform: translate(0, 0); }
+  33% { transform: translate(10px, -15px); }
+  66% { transform: translate(-10px, 10px); }
+  100% { transform: translate(0, 0); }
+}
+
+.drift {
+  animation: drift 8s ease-in-out infinite;
+}
+
+.float-slow {
+  animation: float 12s ease-in-out infinite;
+}
+
+/* Fluid Hero Scaling */
+.hero-title {
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
 }
 
 /* Bento Grid System */

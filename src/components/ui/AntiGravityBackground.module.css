@@ -1,0 +1,47 @@
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--background);
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  transition: opacity 0.5s ease;
+}
+
+.shape1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+}
+
+.shape2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+  bottom: -200px;
+  left: -200px;
+}
+
+.shape3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  top: 40%;
+  left: 20%;
+  opacity: 0.08;
+}
+
+.gradientOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, var(--background) 90%);
+}

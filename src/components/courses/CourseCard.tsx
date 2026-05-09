@@ -62,6 +62,11 @@ export default function CourseCard(props: CourseCardProps) {
       
       <h3 className={styles.title}>{title}</h3>
       
+      <div className={styles.aiInsight}>
+        <span className={styles.aiSparkle}>✨</span>
+        LearnMora Ai: Best for {props.department || "Technical"} Mastery in 2026
+      </div>
+      
       <div className={styles.liveViews}>🔥 1,200+ professionals viewing</div>
       
       <div className={styles.meta}>

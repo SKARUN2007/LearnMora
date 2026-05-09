@@ -4,6 +4,13 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Script from "next/script";
+import CareerMentor from "@/components/ai/CareerMentor";
+import ComparisonEngine from "@/components/courses/ComparisonEngine";
+import FollowModal from "@/components/ui/FollowModal";
+import { UserProvider } from "@/context/UserContext";
+import NextTopLoader from "nextjs-toploader";
+import PageTransition from "@/components/layout/PageTransition";
+import { AntiGravityBackground } from "@/components/ui/AntiGravityBackground";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -25,13 +32,6 @@ export const metadata: Metadata = {
     siteName: "LearnMora Ai",
   },
 };
-
-import CareerMentor from "@/components/ai/CareerMentor";
-import ComparisonEngine from "@/components/courses/ComparisonEngine";
-import FollowModal from "@/components/ui/FollowModal";
-
-import { UserProvider } from "@/context/UserContext";
-import NextTopLoader from "nextjs-toploader";
 
 export default function RootLayout({
   children,
@@ -66,7 +66,8 @@ export default function RootLayout({
       </head>
       <body>
         <UserProvider>
-          <NextTopLoader color="var(--primary)" showSpinner={false} />
+          <NextTopLoader color="var(--accent)" showSpinner={false} />
+          <AntiGravityBackground />
           <Navbar />
           <div className="layout-content">
             <div className="ad-container-top">
@@ -80,7 +81,11 @@ export default function RootLayout({
                 data-full-width-responsive="true"
               ></ins>
             </div>
-            <main>{children}</main>
+            <main>
+              <PageTransition>
+                {children}
+              </PageTransition>
+            </main>
           </div>
           <Footer />
           <CareerMentor />
@@ -91,4 +96,3 @@ export default function RootLayout({
     </html>
   );
 }
-
