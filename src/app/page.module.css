@@ -96,12 +96,13 @@
 .listItem {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.5rem;
   text-decoration: none;
   font-weight: 600;
   font-size: 1.05rem;
-  color: var(--text-muted);
+  color: var(--text-main);
   transition: all 0.2s ease;
+  padding: 0.5rem 0;
 }
 
 .listItem:hover {
@@ -110,8 +111,8 @@
 }
 
 .itemLogoWrapper {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   background: white;
   border-radius: var(--radius-sm);
   display: flex;
@@ -119,6 +120,7 @@
   justify-content: center;
   overflow: hidden;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .dynamicLogo {
@@ -171,7 +173,7 @@
 .bentoList {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
   flex: 1;
 }
 
@@ -186,6 +188,69 @@
 
 .bentoLink:hover {
   transform: translateX(5px);
+}
+
+.bentoSubtext {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-top: auto;
+}
+
+.horizontalList {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.circleItem {
+  width: 56px;
+  height: 56px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 1px solid var(--surface-border);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.moreCircle {
+  width: 48px;
+  height: 48px;
+  background: var(--surface);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  border: 1px dashed var(--surface-border);
+}
+
+.partnerAvatars {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.partnerAvatar {
+  width: 48px;
+  height: 48px;
+  background: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border: 1px solid var(--surface-border);
 }
 
 .bentoLinkPrimary {
@@ -227,6 +292,47 @@
   font-size: 0.9rem;
   opacity: 0.8;
   line-height: 1.6;
+}
+
+.aiWidget {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.aiStat {
+  display: flex;
+  flex-direction: column;
+}
+
+.aiLabel {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.aiValue {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: -1px;
+}
+
+.aiGraph {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 80px;
+}
+
+.aiGraph .bar {
+  flex: 1;
+  background: var(--accent);
+  border-radius: 4px 4px 0 0;
+  opacity: 0.8;
 }
 
 .insightGraph {

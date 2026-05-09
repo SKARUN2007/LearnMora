@@ -101,13 +101,13 @@ export default function Home() {
                 </div>
                 <div className={styles.horizontalList}>
                   {topProviders.map(inst => (
-                    <div key={inst.slug} className={styles.circleItem}>
-                      <InstitutionLogo src={getLogoUrl(inst.domain, inst.slug)} alt={inst.name} fallbackInitials={getInitials(inst.name)} size={40} />
+                    <div key={inst.slug} className={styles.circleItem} title={inst.name}>
+                      <InstitutionLogo src={getLogoUrl(inst.domain, inst.slug)} alt={inst.name} fallbackInitials={getInitials(inst.name)} size={48} />
                     </div>
                   ))}
                   <div className={styles.moreCircle}>+15</div>
                 </div>
-                <p>Access Coursera, Udemy, and edX catalogs in one dashboard.</p>
+                <p className={styles.bentoSubtext}>Access Coursera, Udemy, and edX catalogs in one dashboard.</p>
               </div>
             </BentoItem>
 
@@ -136,11 +136,11 @@ export default function Home() {
                 <div className={styles.partnerAvatars}>
                   {topInstitutions.map(inst => (
                     <div key={inst.slug} className={styles.partnerAvatar} title={inst.name}>
-                       <InstitutionLogo src={getLogoUrl(inst.domain, inst.slug)} alt={inst.name} fallbackInitials={getInitials(inst.name)} size={32} />
+                       <InstitutionLogo src={getLogoUrl(inst.domain, inst.slug)} alt={inst.name} fallbackInitials={getInitials(inst.name)} size={40} />
                     </div>
                   ))}
                 </div>
-                <p>Partnered with the world's leading tech and finance giants.</p>
+                <p className={styles.bentoSubtext}>Partnered with the world's leading tech and finance giants.</p>
               </div>
             </BentoItem>
           </BentoGrid>
