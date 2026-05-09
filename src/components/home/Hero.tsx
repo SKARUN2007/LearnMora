@@ -1,17 +1,41 @@
 "use client";
 
-import OmniSearch from "./OmniSearch";
 import styles from "./Hero.module.css";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useEffect } from "react";
+import { CommandHub } from "../ui/CommandHub";
 
 export default function Hero() {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseX = useSpring(x, { stiffness: 50, damping: 20 });
+  const mouseY = useSpring(y, { stiffness: 50, damping: 20 });
+
+  const rotateX = useTransform(mouseY, [-500, 500], [5, -5]);
+  const rotateY = useTransform(mouseX, [-500, 500], [-5, 5]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const moveX = clientX - window.innerWidth / 2;
+      const moveY = clientY - window.innerHeight / 2;
+      x.set(moveX);
+      y.set(moveY);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [x, y]);
+
   return (
     <section className={styles.hero}>
       <div className={`${styles.container} container`}>
         
         {/* Left Pane - Illustration */}
         <motion.div 
+          style={{ rotateX, rotateY }}
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -60,7 +84,7 @@ export default function Hero() {
             Stop searching. Start sovereign learning.
           </p>
           
-          <OmniSearch />
+          <CommandHub />
 
           <div className={styles.stats}>
             <div className={styles.stat}>

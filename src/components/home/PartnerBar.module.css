@@ -1,0 +1,58 @@
+.partnerBar {
+  background: white;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--surface-border);
+  overflow: hidden;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  text-align: center;
+}
+
+.logoTrack {
+  width: 100%;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.track {
+  display: flex;
+  gap: 6rem;
+  align-items: center;
+  width: fit-content;
+}
+
+.partnerLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.partnerLogo:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+.logoText {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--primary);
+  white-space: nowrap;
+}
