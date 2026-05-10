@@ -173,7 +173,7 @@ export default function CareerMentor() {
           if (!isOpen) setPulse(false);
         }}
       >
-        {isOpen ? <X size={24} /> : <span className={styles.triggerContent}><Sparkles size={18} /> AI Mentor</span>}
+        {isOpen ? <X size={24} /> : <span className={styles.triggerContent}><Trophy size={18} /> AI Mentor</span>}
       </button>
 
       {isOpen && (
