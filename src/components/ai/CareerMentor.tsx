@@ -9,7 +9,7 @@ import rehypeKatex from "rehype-katex";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "katex/dist/katex.min.css";
-import { Paperclip, Trash2, Square, Send, X, MessageSquare, Sparkles, Trophy } from "lucide-react";
+import { Paperclip, Trash2, Square, Send, X, MessageSquare, Sparkles } from "lucide-react";
 import styles from "./CareerMentor.module.css";
 import { useUser } from "@/context/UserContext";
 
