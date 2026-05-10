@@ -22,7 +22,7 @@ export const EcosystemDirectory = () => {
       <div className={styles.container}>
         <div className={styles.header}>
           <span className={styles.eyebrow}>GLOBAL REACH</span>
-          <h2>Our Global Ecosystem</h2>
+          <h2>Our Verified Global Ecosystem v2.1</h2>
           <p>Access curated credentials from the world's most prestigious entities in one unified platform.</p>
         </div>
 
