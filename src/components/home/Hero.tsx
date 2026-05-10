@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { CommandHub } from "../ui/CommandHub";
-import { Linkedin, TrendingUp, Sparkles, Trophy } from "lucide-react";
+import { TrendingUp, Sparkles, Trophy, Share2 } from "lucide-react";
 
 export default function Hero() {
   const x = useMotionValue(0);
@@ -108,7 +108,7 @@ export default function Hero() {
                     <div className={styles.mockupCard}>
                       <div className={styles.mockupHeader}>
                         <div style={{ background: '#0a66c2', padding: '8px', borderRadius: '8px' }}>
-                          <Linkedin color="white" size={24} />
+                          <Trophy color="white" size={24} />
                         </div>
                         <div>
                           <h4>LearnMora Ai</h4>
