@@ -62,13 +62,12 @@ export default function Hero() {
           <div className={styles.illustrationWrapper}>
             <div className={styles.sliderContainer}>
               <AnimatePresence mode="wait">
-                {currentSlide === 0 && (
+                {currentSlide === 0 ? (
                   <motion.div
                     key="illustration"
-                    variants={slideVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.5 }}
                     className={styles.slideWrapper}
                   >
@@ -93,21 +92,18 @@ export default function Hero() {
                       />
                     </motion.div>
                   </motion.div>
-                )}
-
-                {currentSlide === 1 && (
+                ) : currentSlide === 1 ? (
                   <motion.div
                     key="linkedin"
-                    variants={slideVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.5 }}
                     className={styles.slideWrapper}
                   >
                     <div className={styles.mockupCard}>
                       <div className={styles.mockupHeader}>
-                        <div style={{ background: '#0a66c2', padding: '8px', borderRadius: '8px' }}>
+                        <div style={{ background: '#0a66c2', padding: '8px', borderRadius: '8px', display: 'flex' }}>
                           <Trophy color="white" size={24} />
                         </div>
                         <div>
@@ -130,21 +126,18 @@ export default function Hero() {
                       </div>
                     </div>
                   </motion.div>
-                )}
-
-                {currentSlide === 2 && (
+                ) : (
                   <motion.div
                     key="feature"
-                    variants={slideVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.5 }}
                     className={styles.slideWrapper}
                   >
                     <div className={styles.mockupCard}>
                       <div className={styles.mockupHeader}>
-                        <div style={{ background: 'var(--accent)', padding: '8px', borderRadius: '8px' }}>
+                        <div style={{ background: 'var(--accent)', padding: '8px', borderRadius: '8px', display: 'flex' }}>
                           <TrendingUp color="white" size={24} />
                         </div>
                         <div>
