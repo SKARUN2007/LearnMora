@@ -1,53 +1,16 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   poweredByHeader: false,
-  compress: true,
   images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "logo.clearbit.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "logo.uplead.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "t3.gstatic.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "github.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "avatars.githubusercontent.com",
-        pathname: "/**",
-      },
+      { protocol: "https", hostname: "logo.uplead.com" },
+      { protocol: "https", hostname: "t3.gstatic.com" },
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "avatars.githubusercontent.com" }
     ],
   },
-  logging: {
-    fetches: {
-      fullUrl: true,
-    },
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  eslint: { ignoreDuringBuilds: true },
+  typescript: { ignoreBuildErrors: true },
 };
 
 export default nextConfig;
