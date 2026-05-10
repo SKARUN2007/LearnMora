@@ -2,25 +2,165 @@
 
 import styles from "./Hero.module.css";
 import Image from "next/image";
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { CommandHub } from "../ui/CommandHub";
+import { TrendingUp, Sparkles, Trophy } from "lucide-react";
 
 export default function Hero() {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const mouseX = useSpring(x, { stiffness: 50, damping: 20 });
+  const mouseY = useSpring(y, { stiffness: 50, damping: 20 });
+
+  const rotateX = useTransform(mouseY, [-500, 500], [5, -5]);
+  const rotateY = useTransform(mouseX, [-500, 500], [-5, 5]);
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const moveX = clientX - window.innerWidth / 2;
+      const moveY = clientY - window.innerHeight / 2;
+      x.set(moveX);
+      y.set(moveY);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % 3);
+    }, 5000);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      clearInterval(timer);
+    };
+  }, [x, y]);
+
   return (
-    <section className={styles.hero} style={{ border: '10px solid green' }}>
+    <section className={styles.hero}>
       <div className={`${styles.container} container`}>
-        <div className={styles.heroLeft}>
+        <motion.div 
+          style={{ rotateX, rotateY }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className={styles.heroLeft}
+        >
           <div className={styles.illustrationWrapper}>
-            <Image 
-              src="/hero-illustration.png" 
-              alt="LearnMora Ai Mastery" 
-              width={700} 
-              height={700}
-              className={styles.heroImg}
-              style={{ display: 'block', opacity: 1, visibility: 'visible' }}
-              unoptimized
-            />
+            <div className={styles.sliderContainer}>
+              <AnimatePresence mode="wait">
+                {!isMounted ? (
+                  <motion.div key="initial" className={styles.slideWrapper}>
+                    <Image 
+                      src="/hero-illustration.png" 
+                      alt="LearnMora Ai Mastery" 
+                      width={700} 
+                      height={700}
+                      className={styles.heroImg}
+                      unoptimized
+                    />
+                  </motion.div>
+                ) : currentSlide === 0 ? (
+                  <motion.div
+                    key="illustration"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.5 }}
+                    className={styles.slideWrapper}
+                  >
+                    <motion.div
+                      animate={{ y: [0, -15, 0] }}
+                      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <Image 
+                        src="/hero-illustration.png" 
+                        alt="LearnMora Ai Mastery" 
+                        width={700} 
+                        height={700}
+                        className={styles.heroImg}
+                        unoptimized
+                      />
+                    </motion.div>
+                  </motion.div>
+                ) : currentSlide === 1 ? (
+                  <motion.div
+                    key="linkedin"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.5 }}
+                    className={styles.slideWrapper}
+                  >
+                    <div className={styles.mockupCard}>
+                      <div className={styles.mockupHeader}>
+                        <div style={{ background: '#0a66c2', padding: '8px', borderRadius: '8px', display: 'flex' }}>
+                          <Trophy color="white" size={24} />
+                        </div>
+                        <div>
+                          <h4>LearnMora Ai</h4>
+                          <span>Top EdTech Voice • 2026 Milestone</span>
+                        </div>
+                      </div>
+                      <p className={styles.mockupText}>
+                        "We just hit <strong>10,000+ verified Ivy League courses</strong> on the platform! 🚀 Start sovereign learning with Global Authority."
+                      </p>
+                      <div className={styles.mockupImagePlaceholder}>
+                        <Image 
+                          src="/hero-illustration.png" 
+                          alt="LinkedIn Milestone" 
+                          width={500} 
+                          height={300}
+                          style={{ mixBlendMode: 'multiply', opacity: 0.8 }}
+                          unoptimized
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="feature"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.5 }}
+                    className={styles.slideWrapper}
+                  >
+                    <div className={styles.mockupCard}>
+                      <div className={styles.mockupHeader}>
+                        <div style={{ background: 'var(--accent)', padding: '8px', borderRadius: '8px', display: 'flex' }}>
+                          <TrendingUp color="white" size={24} />
+                        </div>
+                        <div>
+                          <h4>AI ROI Engine™</h4>
+                          <span>Proprietary Career Analytics</span>
+                        </div>
+                      </div>
+                      <p className={styles.mockupText}>
+                        Predict your future salary before you even enroll. Our Global Agent calculates the exact ROI of every certification.
+                      </p>
+                      <div className={styles.mockupStats}>
+                        <div className={styles.statBox}>
+                          <span>Global Confidence</span>
+                          <strong style={{ color: 'var(--primary)' }}>98.4%</strong>
+                        </div>
+                        <div className={styles.statBox}>
+                          <span>Avg Salary Hike</span>
+                          <strong>+42%</strong>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
-        </div>
+        </motion.div>
 
         <div className={styles.heroRight}>
           <div className={styles.content}>
