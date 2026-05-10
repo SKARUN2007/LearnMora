@@ -267,8 +267,8 @@ export function getLogoUrl(domain: string, slug?: string): string {
     return `/assets/provider-logos/${slug}.svg`;
   }
   
-  // Use Google Favicon V2 API for reliable, high-res logos (pulls apple-touch-icons)
-  return `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${domain}&size=256`;
+  // Use UpLead as primary for high-quality logos (fallback to Google in UI via onError if needed)
+  return `https://logo.uplead.com/${domain}`;
 }
 
 export function getInstitutionsByRegion(): Record<string, Institution[]> {

@@ -12,7 +12,10 @@ interface Props {
 }
 
 export default function InstitutionLogo({ src, alt, fallbackInitials, size = 32 }: Props) {
-  const [failed, setFailed] = useState(false);
+  const [errorCount, setErrorCount] = useState(0);
+
+  // Extract domain for fallback if needed
+  const domain = src.split('/').pop() || "";
 
   // Generate deterministic "brand" color for the monogram fallback
   const charCode = fallbackInitials.charCodeAt(0) || 0;
@@ -21,7 +24,8 @@ export default function InstitutionLogo({ src, alt, fallbackInitials, size = 32 
 
   const inlineSize = { width: size, height: size };
 
-  if (failed) {
+  // If both external APIs fail, show initials
+  if (errorCount >= 2) {
     return (
       <div 
         className={styles.premiumMonogram} 
@@ -33,15 +37,21 @@ export default function InstitutionLogo({ src, alt, fallbackInitials, size = 32 
     );
   }
 
+  // Stage 1: Try primary (UpLead)
+  // Stage 2: Try secondary (Google Favicon V2)
+  const currentSrc = errorCount === 1 
+    ? `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${domain}&size=128`
+    : src;
+
   return (
     <Image 
-      src={src} 
+      src={currentSrc} 
       alt={alt} 
       width={size} 
       height={size} 
       style={inlineSize}
       className={styles.dynamicLogo} 
-      onError={() => setFailed(true)}
+      onError={() => setErrorCount(prev => prev + 1)}
       loading="lazy"
       unoptimized 
     />
