@@ -10,7 +10,6 @@ import { TrendingUp, Sparkles, Trophy, Share2 } from "lucide-react";
 export default function Hero() {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-
   const mouseX = useSpring(x, { stiffness: 50, damping: 20 });
   const mouseY = useSpring(y, { stiffness: 50, damping: 20 });
 
@@ -18,8 +17,10 @@ export default function Hero() {
   const rotateY = useTransform(mouseX, [-500, 500], [-5, 5]);
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       const moveX = clientX - window.innerWidth / 2;
@@ -41,17 +42,9 @@ export default function Hero() {
     };
   }, [x, y]);
 
-  const slideVariants = {
-    enter: { opacity: 0, x: 20, scale: 0.95 },
-    center: { opacity: 1, x: 0, scale: 1 },
-    exit: { opacity: 0, x: -20, scale: 0.95 }
-  };
-
   return (
     <section className={styles.hero}>
       <div className={`${styles.container} container`}>
-        
-        {/* Left Pane - Illustration */}
         <motion.div 
           style={{ rotateX, rotateY }}
           initial={{ opacity: 0, x: -50 }}
@@ -62,7 +55,22 @@ export default function Hero() {
           <div className={styles.illustrationWrapper}>
             <div className={styles.sliderContainer}>
               <AnimatePresence mode="wait">
-                {currentSlide === 0 ? (
+                {!isMounted ? (
+                  <motion.div
+                    key="initial"
+                    className={styles.slideWrapper}
+                  >
+                    <Image 
+                      src="/hero-illustration.png" 
+                      alt="LearnMora Ai Mastery" 
+                      width={700} 
+                      height={700}
+                      className={styles.heroImg}
+                      priority
+                      unoptimized
+                    />
+                  </motion.div>
+                ) : currentSlide === 0 ? (
                   <motion.div
                     key="illustration"
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -166,47 +174,50 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Right Pane - Content & Search */}
-        <motion.div 
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className={styles.heroRight}
-        >
-          <div className={styles.badge}>
-            <span>NEW</span> 100% Free Professional Certificates for 2026
-          </div>
-          <div className={styles.triadTagline}>
-            <span>Degree for Interviews</span> • <span>Skills for Jobs</span> • <span>Attitude for Growth</span>
-          </div>
-          <h1 className="hero-title">
-            Master Your Career with <br /> <span className={styles.accentText}>Global Authority</span>
-          </h1>
-          <p className={styles.subtitle}>
-            The global EdTech accelerator for Ivy League degrees, professional certifications, and AI-driven career blueprints. 
-            Stop searching. Start sovereign learning.
-          </p>
-          
-          <CommandHub />
+        <div className={styles.heroRight}>
+          <div className={styles.content}>
+            <div className={styles.badgeWrapper}>
+              <span className={styles.newBadge}>NEW</span>
+              <span className={styles.badgeText}>100% Free Professional Certificates for 2026</span>
+            </div>
+            
+            <div className={styles.eyebrows}>
+              <span>Degree for Interviews</span>
+              <span className={styles.dot}>•</span>
+              <span>Skills for Jobs</span>
+              <span className={styles.dot}>•</span>
+              <span>Attitude for Growth</span>
+            </div>
 
-          <div className={styles.stats}>
-            <div className={styles.stat}>
-              <strong>10,000+</strong>
-              <span>Verified Courses</span>
+            <h1 className={styles.title}>
+              Master Your Career with <br />
+              <span className={styles.gradientText}>Global Authority</span>
+            </h1>
+            
+            <p className={styles.description}>
+              The global EdTech accelerator for Ivy League degrees, professional certifications, and AI-driven career blueprints. Stop searching. Start sovereign learning.
+            </p>
+
+            <div className={styles.searchWrapper}>
+              <CommandHub />
             </div>
-            <div className={styles.statLine}></div>
-            <div className={styles.stat}>
-              <strong>200+</strong>
-              <span>Global Partners</span>
-            </div>
-            <div className={styles.statLine}></div>
-            <div className={styles.stat}>
-              <strong>1M+</strong>
-              <span>Professional Blueprints</span>
+
+            <div className={styles.stats}>
+              <div className={styles.statItem}>
+                <span className={styles.statValue}>10,000+</span>
+                <span className={styles.statLabel}>Verified Courses</span>
+              </div>
+              <div className={styles.statItem}>
+                <span className={styles.statValue}>200+</span>
+                <span className={styles.statLabel}>Global Partners</span>
+              </div>
+              <div className={styles.statItem}>
+                <span className={styles.statValue}>1M+</span>
+                <span className={styles.statLabel}>Professional Blueprints</span>
+              </div>
             </div>
           </div>
-        </motion.div>
-
+        </div>
       </div>
     </section>
   );

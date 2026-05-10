@@ -56,8 +56,8 @@ export default function Navbar() {
                 alt="LearnMora Ai Logo" 
                 width={180} 
                 height={45} 
-                priority
                 className={styles.logoImage}
+                unoptimized
               />
             </motion.div>
           </Link>
