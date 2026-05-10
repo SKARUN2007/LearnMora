@@ -9,7 +9,7 @@ import rehypeKatex from "rehype-katex";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "katex/dist/katex.min.css";
-import { Paperclip, Trash2, Square, Send, X, MessageSquare } from "lucide-react";
+import { Paperclip, Trash2, Square, Send, X, MessageSquare, Sparkles } from "lucide-react";
 import styles from "./CareerMentor.module.css";
 import { useUser } from "@/context/UserContext";
 
@@ -173,7 +173,7 @@ export default function CareerMentor() {
           if (!isOpen) setPulse(false);
         }}
       >
-        {isOpen ? <X size={24} /> : <span className={styles.triggerContent}><MessageSquare size={18} style={{ marginRight: '8px' }} /> AI Mentor</span>}
+        {isOpen ? <X size={24} /> : <span className={styles.triggerContent}><Sparkles size={18} /> AI Mentor</span>}
       </button>
 
       {isOpen && (
