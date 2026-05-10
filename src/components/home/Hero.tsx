@@ -66,7 +66,6 @@ export default function Hero() {
                       width={700} 
                       height={700}
                       className={styles.heroImg}
-                      priority
                       unoptimized
                     />
                   </motion.div>
@@ -95,7 +94,6 @@ export default function Hero() {
                         width={700} 
                         height={700}
                         className={styles.heroImg}
-                        priority
                         unoptimized
                       />
                     </motion.div>
@@ -176,25 +174,20 @@ export default function Hero() {
 
         <div className={styles.heroRight}>
           <div className={styles.content}>
-            <div className={styles.badgeWrapper}>
-              <span className={styles.newBadge}>NEW</span>
-              <span className={styles.badgeText}>100% Free Professional Certificates for 2026</span>
+            <div className={styles.badge}>
+              <span>NEW</span> 100% Free Professional Certificates for 2026
             </div>
             
-            <div className={styles.eyebrows}>
-              <span>Degree for Interviews</span>
-              <span className={styles.dot}>•</span>
-              <span>Skills for Jobs</span>
-              <span className={styles.dot}>•</span>
-              <span>Attitude for Growth</span>
+            <div className={styles.triadTagline}>
+              Degree for Interviews <span>•</span> Skills for Jobs <span>•</span> Attitude for Growth
             </div>
 
             <h1 className={styles.title}>
               Master Your Career with <br />
-              <span className={styles.gradientText}>Global Authority</span>
+              <span className={styles.accentText}>Global Authority</span>
             </h1>
             
-            <p className={styles.description}>
+            <p className={styles.subtitle}>
               The global EdTech accelerator for Ivy League degrees, professional certifications, and AI-driven career blueprints. Stop searching. Start sovereign learning.
             </p>
 
@@ -203,17 +196,19 @@ export default function Hero() {
             </div>
 
             <div className={styles.stats}>
-              <div className={styles.statItem}>
-                <span className={styles.statValue}>10,000+</span>
-                <span className={styles.statLabel}>Verified Courses</span>
+              <div className={styles.stat}>
+                <strong>10,000+</strong>
+                <span>Verified Courses</span>
               </div>
-              <div className={styles.statItem}>
-                <span className={styles.statValue}>200+</span>
-                <span className={styles.statLabel}>Global Partners</span>
+              <div className={styles.statLine} />
+              <div className={styles.stat}>
+                <strong>200+</strong>
+                <span>Global Partners</span>
               </div>
-              <div className={styles.statItem}>
-                <span className={styles.statValue}>1M+</span>
-                <span className={styles.statLabel}>Professional Blueprints</span>
+              <div className={styles.statLine} />
+              <div className={styles.stat}>
+                <strong>1M+</strong>
+                <span>Professional Blueprints</span>
               </div>
             </div>
           </div>
