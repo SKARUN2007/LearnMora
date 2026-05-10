@@ -21,10 +21,9 @@
   max-width: 100%;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-premium);
-  background: transparent;
-  padding: 2rem;
-  border: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .heroImg {
