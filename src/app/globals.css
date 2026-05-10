@@ -32,7 +32,7 @@
   --radius-xl: 2rem;
   --radius-full: 9999px;
 
-  --nav-height: 80px;
+  --nav-height: 96px;
   --container-max: 1720px;
   --font-main: var(--font-outfit), 'Inter', sans-serif;
 }

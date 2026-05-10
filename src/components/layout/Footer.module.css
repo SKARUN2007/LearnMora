@@ -30,11 +30,11 @@
 }
 
 .logoImage {
-  height: 48px;
+  height: 56px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.05));
-  mix-blend-mode: multiply;
+  mix-blend-mode: darken;
 }
 
 .description {
