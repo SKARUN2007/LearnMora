@@ -10,6 +10,16 @@ const nextConfig: NextConfig = {
         hostname: "logo.clearbit.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "logo.uplead.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "t3.gstatic.com",
+        pathname: "/**",
+      },
     ],
   },
   logging: {
