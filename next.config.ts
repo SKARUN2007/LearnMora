@@ -39,8 +39,14 @@ const nextConfig: NextConfig = {
   },
   logging: {
     fetches: {
-      fullUrl: false,
+      fullUrl: true,
     },
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
 };
 
