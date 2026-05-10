@@ -18,12 +18,15 @@
 }
 
 .illustrationWrapper {
-  max-width: 100%;
+  width: 100%;
+  max-width: 800px;
+  min-height: 600px;
   border-radius: var(--radius-xl);
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .heroImg {
@@ -208,6 +211,11 @@
   .stats {
     justify-content: center;
   }
+
+  .illustrationWrapper, .sliderContainer {
+    min-height: 400px;
+    height: 400px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -231,7 +239,7 @@
 .sliderContainer {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
