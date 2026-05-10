@@ -1,7 +1,6 @@
 .hero {
   padding: 6rem 0;
   background: var(--background);
-  border: 5px solid red; /* DIAGNOSTIC */
 }
 
 .container {

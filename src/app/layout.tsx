@@ -20,7 +20,7 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: {
     template: "%s | LearnMora Ai - Premier Professional Course Ecosystem",
-    default: "LearnMora Ai [TEST] | The Global Index for Professional Certificates & Degrees",
+    default: "LearnMora Ai | The Global Index for Professional Certificates & Degrees",
   },
   description: "Aggregating the world's best courses from Coursera, Udemy, Harvard, MIT, and more. Track your learning, analyze your resume, and build your career roadmap with AI.",
   keywords: ["online courses", "professional certificates", "career roadmap", "resume analyzer", "free courses", "university degrees"],
