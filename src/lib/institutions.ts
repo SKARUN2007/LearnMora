@@ -267,7 +267,8 @@ export function getLogoUrl(domain: string, slug?: string): string {
     return `/assets/provider-logos/${slug}.svg`;
   }
   
-  return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+  // Use Clearbit for high-quality vector/high-res logos
+  return `https://logo.clearbit.com/${domain}?size=256`;
 }
 
 export function getInstitutionsByRegion(): Record<string, Institution[]> {
