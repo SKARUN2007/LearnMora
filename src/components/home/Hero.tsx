@@ -54,7 +54,7 @@ export default function Hero() {
                }}
              >
                <Image 
-                 src="/hero-learner.png" 
+                 src="/hero-illustration.png" 
                  alt="Professional Learner" 
                  width={800} 
                  height={800}
