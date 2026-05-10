@@ -184,7 +184,7 @@ export default function Hero() {
 
             <h1 className={styles.title}>
               Master Your Career with <br />
-              <span className={styles.accentText}>Global Authority</span>
+              <span className={styles.accentText}>TEST UPDATE</span>
             </h1>
             
             <p className={styles.subtitle}>
