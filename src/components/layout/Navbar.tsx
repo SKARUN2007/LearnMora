@@ -56,7 +56,7 @@ export default function Navbar() {
                 alt="LearnMora Ai Logo" 
                 width={180} 
                 height={45} 
-                className={styles.logoImage}
+                style={{ mixBlendMode: 'darken', height: '45px', width: 'auto', display: 'block' }}
                 unoptimized
               />
             </motion.div>
