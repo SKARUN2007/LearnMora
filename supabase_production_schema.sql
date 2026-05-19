@@ -61,3 +61,38 @@ CREATE POLICY "Users can manage own course library"
 CREATE POLICY "Anyone can insert follows" 
     ON public.follows FOR INSERT 
     WITH CHECK ( true );
+
+-- ==============================================================================
+-- 4. Create Courses Table (For 1M+ Course Database Migration)
+-- ==============================================================================
+CREATE TABLE IF NOT EXISTS public.courses (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    provider TEXT NOT NULL,
+    rating NUMERIC NOT NULL,
+    duration TEXT,
+    price TEXT,
+    roi TEXT,
+    "isFree" BOOLEAN DEFAULT false,
+    category TEXT NOT NULL,
+    "subCategory" TEXT,
+    "niche" TEXT,
+    description TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Add indexes to support millions of rows and fast filtering
+CREATE INDEX IF NOT EXISTS courses_category_idx ON public.courses(category);
+CREATE INDEX IF NOT EXISTS courses_subcategory_idx ON public.courses("subCategory");
+CREATE INDEX IF NOT EXISTS courses_provider_idx ON public.courses(provider);
+
+ALTER TABLE public.courses ENABLE ROW LEVEL SECURITY;
+
+-- Courses: Anyone can read courses
+CREATE POLICY "Anyone can read courses" 
+    ON public.courses FOR SELECT 
+    USING ( true );
+
+-- Courses: Only authenticated admins can insert/update (requires custom claim or service role)
+-- The seed script will use the service_role key to bypass RLS.
+

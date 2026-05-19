@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDepartmentBySlug, TAXONOMY } from "@/lib/taxonomy";
-import { GENERATED_COURSES } from "@/lib/generatedCourses";
+import { getCoursesBySubCategory } from "@/lib/supabase";
 import CourseCard from "@/components/courses/CourseCard";
 import LoadMore from "@/components/ui/LoadMore";
 import styles from "./department.module.css";
@@ -46,8 +46,8 @@ export default async function DepartmentPage({ params }: PageProps) {
     };
   }
 
-  // Find all courses generated for this subcategory
-  const courses = GENERATED_COURSES.filter(c => c.subCategory === dept.name);
+  // Find all courses generated for this subcategory via Supabase (or fallback)
+  const courses = await getCoursesBySubCategory(dept.name);
 
   // Simulate 1M+ courses deterministically
   let hash = 0;
