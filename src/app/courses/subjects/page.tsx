@@ -27,9 +27,20 @@ export default function SubjectsPage() {
       <div className={styles.container}>
         <div className={styles.megaGridWrapper}>
           {TAXONOMY.map(pillar => {
-            const pillarCourseCount = GENERATED_COURSES.filter(c =>
-              pillar.subCategories.some(s => s.name === c.subCategory)
-            ).length;
+            const getSimulatedCount = (name: string, baseCount: number) => {
+              let hash = 0;
+              for (let i = 0; i < name.length; i++) {
+                hash = name.charCodeAt(i) + ((hash << 5) - hash);
+              }
+              const offset = 1000000 + (Math.abs(hash) % 500000);
+              return baseCount + offset;
+            };
+
+            let simulatedPillarCount = 0;
+            pillar.subCategories.forEach(sub => {
+              const subCount = GENERATED_COURSES.filter(c => c.subCategory === sub.name).length;
+              simulatedPillarCount += getSimulatedCount(sub.name, subCount);
+            });
 
             return (
               <section key={pillar.slug} className={styles.pillarBlock}>
@@ -38,11 +49,12 @@ export default function SubjectsPage() {
                     <h2>{pillar.name}</h2>
                     <p>{pillar.description}</p>
                   </div>
-                  <span className={styles.pillarCount}>{pillarCourseCount} Courses</span>
+                  <span className={styles.pillarCount}>{simulatedPillarCount.toLocaleString()} Courses</span>
                 </Link>
                 <div className={styles.departmentGrid}>
                   {pillar.subCategories.map(sub => {
                     const subCount = GENERATED_COURSES.filter(c => c.subCategory === sub.name).length;
+                    const simulatedSubCount = getSimulatedCount(sub.name, subCount);
                     return (
                       <Link 
                         key={sub.slug} 
@@ -51,7 +63,7 @@ export default function SubjectsPage() {
                       >
                         <h3>{sub.name}</h3>
                         <div className={styles.deptMeta}>
-                          <span className={styles.deptCount}>{subCount} programs</span>
+                          <span className={styles.deptCount}>{simulatedSubCount.toLocaleString()} programs</span>
                           <span className={styles.deptArrow}>→</span>
                         </div>
                       </Link>

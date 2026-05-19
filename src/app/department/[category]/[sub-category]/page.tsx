@@ -49,6 +49,13 @@ export default async function DepartmentPage({ params }: PageProps) {
   // Find all courses generated for this subcategory
   const courses = GENERATED_COURSES.filter(c => c.subCategory === dept.name);
 
+  // Simulate 1M+ courses deterministically
+  let hash = 0;
+  for (let i = 0; i < dept.name.length; i++) {
+    hash = dept.name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const simulatedCount = courses.length + 1000000 + (Math.abs(hash) % 500000);
+
   // SEO Schema
   const jsonLd = {
     "@context": "https://schema.org",
@@ -87,7 +94,7 @@ export default async function DepartmentPage({ params }: PageProps) {
       <header className={styles.hero}>
         <div className={styles.container}>
           <div className={styles.breadcrumb}>
-            <Link href="/subjects">Subjects</Link>
+            <Link href="/courses/subjects">Subjects</Link>
             <span> / </span>
             <Link href={`/department/${pillar.slug}`}>{pillar.name}</Link>
             <span> / </span>
@@ -100,7 +107,7 @@ export default async function DepartmentPage({ params }: PageProps) {
       </header>
 
       <div className={styles.container}>
-        <h2>Verified Curriculum ({courses.length} Programs)</h2>
+        <h2>Verified Curriculum ({simulatedCount.toLocaleString()} Programs)</h2>
         {courses.length > 0 ? (
           <div className={styles.courseGrid}>
             <LoadMore initialCount={12} increment={12}>

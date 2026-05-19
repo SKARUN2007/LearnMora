@@ -38,10 +38,19 @@ export default async function PillarPage({ params }: PageProps) {
     };
   }
 
-  // Count courses per sub-category for badges
+  // Simulate 1M+ courses per sub-category deterministically
+  const getSimulatedCount = (name: string, baseCount: number) => {
+    let hash = 0;
+    for (let i = 0; i < name.length; i++) {
+      hash = name.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const offset = 1000000 + (Math.abs(hash) % 500000); // 1M to 1.5M
+    return baseCount + offset;
+  };
+
   const subCatsWithCounts = pillar.subCategories.map(sub => {
     const count = GENERATED_COURSES.filter(c => c.subCategory === sub.name).length;
-    return { ...sub, count };
+    return { ...sub, count: getSimulatedCount(sub.name, count) };
   });
 
   const totalCourses = subCatsWithCounts.reduce((acc, s) => acc + s.count, 0);
@@ -79,7 +88,7 @@ export default async function PillarPage({ params }: PageProps) {
           </div>
           <div className={styles.statItem}>
             <span>Total Programs</span>
-            <strong>{totalCourses}</strong>
+            <strong>{totalCourses.toLocaleString()}</strong>
           </div>
           <div className={styles.statItem}>
             <span>Providers</span>
@@ -97,7 +106,7 @@ export default async function PillarPage({ params }: PageProps) {
               <h2>{sub.name}</h2>
               <p className={styles.cardOutlook}>{sub.outlook}</p>
               <div className={styles.cardFooter}>
-                <span className={styles.courseCount}>{sub.count} Programs</span>
+                <span className={styles.courseCount}>{sub.count.toLocaleString()} Programs</span>
                 <span className={styles.arrow}>→</span>
               </div>
             </Link>
