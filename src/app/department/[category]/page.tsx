@@ -36,15 +36,13 @@ export default async function PillarPage({ params }: PageProps) {
       description: `We are currently aggregating millions of data points to generate the full 2026 Learnmora Report on ${displayName}. Our ingestion engine handles deep-linking to shadow paths securely.`,
       subCategories: []
     };
-  }
-
-  // Simulate 1M+ courses per sub-category deterministically
+  // Simulate 1 Lakh+ courses per sub-category deterministically
   const getSimulatedCount = (name: string, baseCount: number) => {
     let hash = 0;
     for (let i = 0; i < name.length; i++) {
       hash = name.charCodeAt(i) + ((hash << 5) - hash);
     }
-    const offset = 1000000 + (Math.abs(hash) % 500000); // 1M to 1.5M
+    const offset = 100000 + (Math.abs(hash) % 50000); // 1 Lakh to 1.5 Lakhs
     return baseCount + offset;
   };
 

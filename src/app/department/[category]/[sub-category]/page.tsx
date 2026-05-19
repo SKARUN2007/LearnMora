@@ -49,12 +49,12 @@ export default async function DepartmentPage({ params }: PageProps) {
   // Find all courses generated for this subcategory via Supabase (or fallback)
   const courses = await getCoursesBySubCategory(dept.name);
 
-  // Simulate 1M+ courses deterministically
+  // Simulate 1 Lakh+ courses deterministically
   let hash = 0;
   for (let i = 0; i < dept.name.length; i++) {
     hash = dept.name.charCodeAt(i) + ((hash << 5) - hash);
   }
-  const simulatedCount = courses.length + 1000000 + (Math.abs(hash) % 500000);
+  const simulatedCount = courses.length + 100000 + (Math.abs(hash) % 50000);
 
   // SEO Schema
   const jsonLd = {

@@ -32,7 +32,7 @@ export default function SubjectsPage() {
               for (let i = 0; i < name.length; i++) {
                 hash = name.charCodeAt(i) + ((hash << 5) - hash);
               }
-              const offset = 1000000 + (Math.abs(hash) % 500000);
+              const offset = 100000 + (Math.abs(hash) % 50000);
               return baseCount + offset;
             };
 
