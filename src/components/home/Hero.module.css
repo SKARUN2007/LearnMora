@@ -11,7 +11,8 @@
   min-height: 80vh;
 }
 
-.heroLeft {
+.heroRight {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,7 +38,7 @@
   mix-blend-mode: multiply;
 }
 
-.heroRight {
+.heroLeft {
   flex: 1;
   text-align: left;
   display: flex;
@@ -194,11 +195,11 @@
     gap: 3rem;
   }
   
-  .heroLeft {
+  .heroRight {
     order: 2; /* Move image below text on mobile */
   }
   
-  .heroRight {
+  .heroLeft {
     order: 1;
     text-align: center;
     align-items: center;
